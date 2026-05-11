@@ -1,0 +1,2 @@
+session_id,participant_id,date,device,screen_width,screen_height,sampling_rate,calibration_quality
+S001,P001,2026-05-07,Tobii,1920,1080,60,good

@@ -1,0 +1,20 @@
+Preprocessing Report
+====================
+date_time: 2026-05-11T17:03:29
+participants: 5
+sessions: 5
+trials: 40
+raw_gaze_samples: 4128
+windows_created: 40
+usable_windows: 40
+unusable_windows: 0
+window_size_seconds: 3.0
+window_stride_seconds: 1.0
+min_valid_ratio: 0.7
+
+Label distribution by windows:
+- label 0: 20
+- label 1: 20
+
+Validation warnings:
+- participants.csv contains 2 duplicate participant_id rows.

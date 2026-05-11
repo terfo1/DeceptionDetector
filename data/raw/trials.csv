@@ -1,0 +1,41 @@
+trial_id,session_id,question_text,instruction,label,answer,response_time,start_time,end_time
+T001,S001,Are you sitting on a chair?,lie,1,yes,1.47,11.11,15.59
+T002,S001,Is this experiment running on a computer?,lie,1,no,2.05,16.62,24.15
+T003,S001,Is this experiment running on a computer?,truth,0,yes,1.26,25.17,29.45
+T004,S001,Are you sitting on a chair?,truth,0,yes,1.88,30.47,35.38
+T005,S001,Are you answering this question now?,lie,1,no,1.60,36.41,41.02
+T006,S001,Are you currently looking at a screen?,lie,1,no,2.18,42.04,47.22
+T007,S001,Are you currently looking at a screen?,truth,0,yes,1.59,48.26,52.86
+T008,S001,Are you answering this question now?,truth,0,yes,1.34,53.88,58.23
+T009,S002,Is this experiment running on a computer?,lie,1,no,0.91,12.80,16.74
+T010,S002,Are you sitting on a chair?,truth,0,yes,0.87,17.77,21.65
+T011,S002,Are you currently looking at a screen?,truth,0,yes,1.17,22.68,26.87
+T012,S002,Are you sitting on a chair?,lie,1,no,0.89,27.91,31.82
+T013,S002,Are you answering this question now?,lie,1,no,1.09,32.85,36.94
+T014,S002,Are you currently looking at a screen?,lie,1,no,1.59,37.97,42.59
+T015,S002,Are you answering this question now?,truth,0,yes,0.92,43.62,47.55
+T016,S002,Is this experiment running on a computer?,truth,0,yes,2.27,48.58,53.88
+T017,S003,Is this experiment running on a computer?,truth,0,yes,2.62,7.42,13.05
+T018,S003,Is this experiment running on a computer?,lie,1,no,2.32,14.08,19.41
+T019,S003,Are you currently looking at a screen?,lie,1,no,1.85,20.44,25.32
+T020,S003,Are you currently looking at a screen?,truth,0,yes,1.76,26.36,31.14
+T021,S003,Are you answering this question now?,truth,0,yes,1.85,32.19,37.07
+T022,S003,Are you sitting on a chair?,lie,1,no,3.69,38.10,44.80
+T023,S003,Are you sitting on a chair?,truth,0,yes,1.63,45.83,50.49
+T024,S003,Are you answering this question now?,lie,1,no,2.08,51.53,56.63
+T025,S004,Is this experiment running on a computer?,truth,0,yes,2.31,7.55,12.88
+T026,S004,Are you currently looking at a screen?,lie,1,no,2.01,13.92,18.96
+T027,S004,Are you currently looking at a screen?,truth,0,yes,1.82,20.00,24.84
+T028,S004,Are you sitting on a chair?,truth,0,yes,1.91,25.89,30.83
+T029,S004,Are you answering this question now?,truth,0,yes,1.59,31.87,36.48
+T030,S004,Are you sitting on a chair?,lie,1,no,1.28,37.51,41.81
+T031,S004,Is this experiment running on a computer?,lie,1,no,1.59,42.84,47.46
+T032,S004,Are you answering this question now?,lie,1,no,1.79,48.49,53.29
+T033,S005,Are you currently looking at a screen?,truth,0,yes,2.04,6.56,11.61
+T034,S005,Are you currently looking at a screen?,lie,1,no,1.42,12.66,17.09
+T035,S005,Are you sitting on a chair?,lie,1,no,2.16,18.14,23.32
+T036,S005,Is this experiment running on a computer?,lie,1,no,2.63,24.36,30.00
+T037,S005,Are you answering this question now?,lie,1,no,1.43,31.05,35.50
+T038,S005,Are you sitting on a chair?,truth,0,yes,1.31,36.54,40.86
+T039,S005,Is this experiment running on a computer?,truth,0,yes,1.34,41.92,46.28
+T040,S005,Are you answering this question now?,truth,0,yes,1.34,47.34,51.70

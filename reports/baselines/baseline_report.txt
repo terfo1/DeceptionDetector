@@ -1,0 +1,56 @@
+Baseline Model Training Report
+Generated: 2026-05-11T17:03:45
+
+Input files used:
+- data/processed/train_window_features.csv
+- data/processed/validation_window_features.csv
+- data/processed/test_window_features.csv
+
+Train samples: 8
+Validation samples: 8
+Test samples: 24
+Number of features used: 16
+
+Feature columns:
+- gaze_x_mean
+- gaze_x_std
+- gaze_y_mean
+- gaze_y_std
+- pupil_left_mean
+- pupil_left_std
+- pupil_right_mean
+- pupil_right_std
+- pupil_mean_mean
+- pupil_mean_std
+- blink_rate
+- fixation_rate
+- saccade_rate
+- gaze_velocity_mean
+- gaze_velocity_std
+- missing_ratio
+
+Train label distribution: {0: 4, 1: 4}
+Validation label distribution: {0: 4, 1: 4}
+
+Model names:
+- logistic_regression
+- random_forest
+
+Validation metrics:
+- logistic_regression: accuracy=0.1250, balanced_accuracy=0.1250, precision=0.2000, recall=0.2500, f1=0.2222, roc_auc=0.1250, average_precision=0.3988, false_positive_rate=1.0000, false_negative_rate=0.7500
+- random_forest: accuracy=0.5000, balanced_accuracy=0.5000, precision=0.5000, recall=0.7500, f1=0.6000, roc_auc=0.2500, average_precision=0.4304, false_positive_rate=0.7500, false_negative_rate=0.2500
+
+Warnings:
+- None
+
+Scientific note:
+These are baseline models using aggregated window features. They are not neural sequence models and should not be interpreted as a final deception detector.
+
+Test Evaluation
+Test sample count: 24
+Test label distribution: {0: 12, 1: 12}
+Test metrics:
+- logistic_regression: accuracy=0.4583, balanced_accuracy=0.4583, precision=0.4706, recall=0.6667, f1=0.5517, roc_auc=0.6111, average_precision=0.7024, false_positive_rate=0.7500, false_negative_rate=0.3333
+- random_forest: accuracy=0.6250, balanced_accuracy=0.6250, precision=0.6000, recall=0.7500, f1=0.6667, roc_auc=0.5694, average_precision=0.5748, false_positive_rate=0.5000, false_negative_rate=0.2500
+Warnings:
+- None
