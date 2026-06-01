@@ -120,3 +120,23 @@ Baseline outputs are saved to:
 models/baselines/
 reports/baselines/
 ```
+
+## Final Report Generation
+
+Generate the final Word technical/research report:
+
+```bash
+python scripts/generate_final_report.py
+```
+
+The report is saved to:
+
+```text
+reports/final_report/eye_tracking_deception_report.docx
+```
+
+If local PDF conversion support is available, the script also creates:
+
+```text
+reports/final_report/eye_tracking_deception_report.pdf
+```
