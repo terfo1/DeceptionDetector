@@ -1,0 +1,3 @@
+step_name,critical,status,return_code,duration_seconds,command,started_at,finished_at
+generate_model_comparison,False,passed,0,0.711,python -m src.analysis.generate_model_comparison,2026-06-01T16:21:13,2026-06-01T16:21:14
+generate_threshold_report,False,passed,0,6.016,python -m src.analysis.generate_threshold_report,2026-06-01T16:21:14,2026-06-01T16:21:20

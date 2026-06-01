@@ -1,0 +1,3 @@
+dataset_version,created_at,participant_count,session_count,trial_count,gaze_sample_count,total_window_count,train_window_count,validation_window_count,test_window_count,total_split_participants,manifest_path,warning_count
+dataset_v001,2026-06-01T16:09:23,5,8,56,6567,40,8,8,24,3,reports\tracking\latest_dataset_manifest.json,1
+dataset_v002,2026-06-01T16:11:27,5,8,56,6567,40,8,8,24,3,reports\tracking\latest_dataset_manifest.json,1

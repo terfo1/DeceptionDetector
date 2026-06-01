@@ -1,0 +1,53 @@
+Pipeline Run Report
+
+1. Overview
+Mode: reports
+Started at: 2026-06-01T16:21:13
+Finished at: 2026-06-01T16:21:20
+Pipeline status: success
+Total duration seconds: 6.728
+Dry run: False
+
+2. Step Results
+
+Step name: generate_model_comparison
+Description: Generate model comparison and diagnostics report.
+Command: python -m src.analysis.generate_model_comparison
+Critical: False
+Status: passed
+Return code: 0
+Duration seconds: 0.711
+Stdout tail:
+Generating model comparison and diagnostics...
+matplotlib is not available. Plot generation skipped.
+Best model by available f1: random_forest
+Collapsed models detected: causal_tcn, lstm
+Files saved to reports/model_comparison
+
+
+Step name: generate_threshold_report
+Description: Generate threshold calibration and probability diagnostics report.
+Command: python -m src.analysis.generate_threshold_report
+Critical: False
+Status: passed
+Return code: 0
+Duration seconds: 6.016
+Stdout tail:
+Generating threshold calibration and probability diagnostics...
+matplotlib is not available. Plot generation skipped.
+Loaded prediction rows: 369
+All-medium model/split pairs: test/causal_tcn, test/gru, test/lstm, validation/causal_tcn, validation/gru, validation/lstm
+Files saved to reports/threshold_calibration
+
+
+3. Summary
+Passed steps: 2
+Failed steps: 0
+Skipped steps: 0
+Critical failures: 0
+
+4. Warnings
+- None.
+
+5. Next Actions
+Review reports/model_comparison and reports/tracking.

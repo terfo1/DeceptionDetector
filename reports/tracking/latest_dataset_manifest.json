@@ -1,0 +1,157 @@
+{
+  "dataset_version": "dataset_v002",
+  "created_at": "2026-06-01T16:11:27",
+  "dataset_statistics": {
+    "participant_count": 5,
+    "session_count": 8,
+    "trial_count": 56,
+    "gaze_sample_count": 6567,
+    "truth_trial_count": 28,
+    "lie_trial_count": 28,
+    "train_window_count": 8,
+    "validation_window_count": 8,
+    "test_window_count": 24,
+    "total_window_count": 40,
+    "train_participant_count": 1,
+    "validation_participant_count": 1,
+    "test_participant_count": 1,
+    "total_split_participants": 3,
+    "sequence_train_count": 8,
+    "sequence_validation_count": 8,
+    "sequence_test_count": 24
+  },
+  "raw_file_hashes": [
+    {
+      "path": "data/raw/participants.csv",
+      "exists": true,
+      "size_bytes": 220,
+      "modified_at": "2026-06-01T15:50:51",
+      "sha256": "2b25fa9c515219ede5d9f664b7c6031e72167d586bd7619828aa922738557c6d"
+    },
+    {
+      "path": "data/raw/participant_metadata.csv",
+      "exists": true,
+      "size_bytes": 247,
+      "modified_at": "2026-06-01T15:50:51",
+      "sha256": "bfa279e2b141a4c595f0c577753f065fc40a6096e9fcf130c69b57c564a2a877"
+    },
+    {
+      "path": "data/raw/sessions.csv",
+      "exists": true,
+      "size_bytes": 572,
+      "modified_at": "2026-06-01T15:50:51",
+      "sha256": "07a32ca1fc0344226f4f3fbaa2dec109819e0025125eb0d59e0e0fb6570870a7"
+    },
+    {
+      "path": "data/raw/session_metadata.csv",
+      "exists": true,
+      "size_bytes": 332,
+      "modified_at": "2026-06-01T15:51:02",
+      "sha256": "17f9811560ef45bf2f32d87a10367a91259564feefadacecbd6ef480c373dfdc"
+    },
+    {
+      "path": "data/raw/trials.csv",
+      "exists": true,
+      "size_bytes": 4296,
+      "modified_at": "2026-06-01T15:52:10",
+      "sha256": "e6ef31d2de6b4e3ca7c9c05dcc2b83593afd02f5b8ced234f5106a6783be4ab4"
+    },
+    {
+      "path": "data/raw/gaze_samples.csv",
+      "exists": true,
+      "size_bytes": 307641,
+      "modified_at": "2026-06-01T15:52:10",
+      "sha256": "d96cea1415dbb899d1c29c2d36c66efc6a32fdde8acdf6b4994e128d61babcb7"
+    },
+    {
+      "path": "data/raw/session_quality.csv",
+      "exists": true,
+      "size_bytes": 483,
+      "modified_at": "2026-06-01T15:52:12",
+      "sha256": "af184b98d33c3611c31d63b2e8aa491454790a90ec021613b52e4d39c69907b6"
+    }
+  ],
+  "processed_file_hashes": [
+    {
+      "path": "data/processed/windows.csv",
+      "exists": true,
+      "size_bytes": 5812,
+      "modified_at": "2026-06-01T15:53:07",
+      "sha256": "2e7bda48716f8ef462116c3d6472ba56b03c5f4cefdac5071c3d54435b2bc6f2"
+    },
+    {
+      "path": "data/processed/window_features.csv",
+      "exists": true,
+      "size_bytes": 11514,
+      "modified_at": "2026-06-01T15:53:07",
+      "sha256": "9c256831654c05b0cecaa9fb0a9f40e80cdc7281c14f2378c638876274df24a9"
+    },
+    {
+      "path": "data/processed/train_windows.csv",
+      "exists": true,
+      "size_bytes": 964,
+      "modified_at": "2026-05-11T17:03:36",
+      "sha256": "42be153c3db81c0b1593a1dc77b22ab74cd98d6b6098267ad71cd19c969e847f"
+    },
+    {
+      "path": "data/processed/validation_windows.csv",
+      "exists": true,
+      "size_bytes": 961,
+      "modified_at": "2026-05-11T17:03:36",
+      "sha256": "30bf0ccf5bd464966383a7c0028ffeace8f4b8e681faa45e7a3f391002efb443"
+    },
+    {
+      "path": "data/processed/test_windows.csv",
+      "exists": true,
+      "size_bytes": 2577,
+      "modified_at": "2026-05-11T17:03:36",
+      "sha256": "af0410ff410c8b5beb82b03cbe9f949aacc1d949b72bbfd74bbe8741a69df678"
+    },
+    {
+      "path": "data/processed/train_window_features.csv",
+      "exists": true,
+      "size_bytes": 1898,
+      "modified_at": "2026-05-11T17:03:36",
+      "sha256": "b8baffc50978121733b22384138d524d546a5d7bff483ce63208045f8dcaef6f"
+    },
+    {
+      "path": "data/processed/validation_window_features.csv",
+      "exists": true,
+      "size_bytes": 1911,
+      "modified_at": "2026-05-11T17:03:36",
+      "sha256": "d98fb72a1842e536f65a8c13821ed3a89b782c247d2f96f9e4adfb06c901cee8"
+    },
+    {
+      "path": "data/processed/test_window_features.csv",
+      "exists": true,
+      "size_bytes": 5016,
+      "modified_at": "2026-05-11T17:03:36",
+      "sha256": "82510a86dcc484c56683ad97c9094df6e1104b8a9ee8bf43e06c14a441cc97cd"
+    },
+    {
+      "path": "data/processed/sequences/train_sequences.npz",
+      "exists": true,
+      "size_bytes": 19740,
+      "modified_at": "2026-06-01T10:56:36",
+      "sha256": "dc7437eaacff4f4caa1089f0936a47b6b37771586d61d2d8065523950092e1f8"
+    },
+    {
+      "path": "data/processed/sequences/validation_sequences.npz",
+      "exists": true,
+      "size_bytes": 20556,
+      "modified_at": "2026-06-01T10:56:36",
+      "sha256": "d595d74a1b6ea98e9ad68eda35fa23ea5af673fc7bb7a70ed7ce62b218dc9d27"
+    },
+    {
+      "path": "data/processed/sequences/test_sequences.npz",
+      "exists": true,
+      "size_bytes": 53060,
+      "modified_at": "2026-06-01T10:56:36",
+      "sha256": "36c34582bd6bbb89e6e525ae38d9e5230728e39e7125fa55f299abdf5ec6771e"
+    }
+  ],
+  "warnings": [
+    "Participant count is below the preferred reliability threshold of 10."
+  ],
+  "note": "This dataset is used for controlled deception-risk estimation research and is not evidence of universal lie detection."
+}

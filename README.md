@@ -1,430 +1,181 @@
-# Real-Time Eye-Tracking-Based Deception Risk Detection Using Neural Networks
+# Real-Time Eye-Tracking-Based Deception Risk Detection
 
-This project is for developing a machine learning system that estimates deception risk from real-time eye-tracking data.
+This project estimates deception-risk patterns from eye-tracking signals under a controlled experimental protocol. It includes data collection, preprocessing, model training, model diagnostics, live inference, a minimal dashboard, gaze source adapters, run tracking, and a one-command pipeline runner.
 
-Current project stage: dataset structure design and simple experimental data collection.
+Important: this system is not a universal lie detector. It outputs risk scores for research/prototype use, not final truth/lie judgments.
 
-At this stage, the project contains dataset documentation, project folders, sample CSV files, and a simple local experiment runner. Model training, real-time inference, API code, frontend code, and live eye-tracking integration will be implemented in later steps.
+## Current Status
 
-## Folder structure
+Implemented through Step 22:
 
-```text
-data/
-  raw/          Raw dataset CSV files
-  processed/    Processed datasets created in later steps
-  samples/      Example CSV files showing the expected raw format
-docs/           Project and dataset documentation
-src/            Future source code modules
-notebooks/      Future exploratory notebooks
-reports/        Future analysis reports
-```
+- Tkinter experiment/data collection workflow
+- Raw data validation and preprocessing
+- Subject-independent train/validation/test split
+- Baseline Logistic Regression and Random Forest models
+- LSTM, GRU, and Causal TCN sequence models
+- Model comparison and threshold diagnostics
+- Real-time replay simulation
+- Model selection for live prototype
+- FastAPI/WebSocket live inference service
+- WebSocket test client
+- Minimal HTML/JavaScript live monitor
+- Gaze source adapter interface
+- Data collection quality reports
+- Dataset versioning and run tracking
+- One-command pipeline runner
+- Final documentation and handoff package
 
-## Dataset documentation
+## Architecture Overview
 
-The raw dataset format is described in `docs/dataset_format.md`.
-
-## Step 4: Experiment Interface
-
-The project includes a simple Tkinter-based experiment runner for collecting controlled statement-level deception task data. It collects participant, session, trial, and gaze sample rows using the raw CSV format documented in `docs/dataset_format.md`.
-
-The current version uses a mock eye tracker so the interface can be tested without external hardware. Real eye tracker integration will be added later.
-
-Run the app from the project root:
-
-```bash
-python -m src.data_collection.experiment_app
-```
-
-Raw data is saved to:
+Offline pipeline:
 
 ```text
-data/raw/participants.csv
-data/raw/sessions.csv
-data/raw/trials.csv
-data/raw/gaze_samples.csv
+raw data -> preprocessing -> windows -> subject-independent split
+-> baseline models -> sequence datasets -> LSTM/GRU/TCN
+-> comparison -> model selection -> tracking
 ```
 
-The app does not include model training, neural network code, API code, frontend code, or real-time inference.
-
-## Step 5: Preprocessing and Windowing
-
-Raw experiment data can now be validated and converted into processed sliding-window datasets. The preprocessing code checks raw CSV structure, validates dataset relationships, cleans gaze samples, calculates `pupil_mean` and `gaze_velocity`, creates sliding windows, and saves aggregated window features.
-
-This step prepares data for future ML training. No model training, neural network code, API code, frontend code, or real-time inference is implemented yet.
-
-Validate raw data:
-
-```bash
-python -m src.preprocessing.validate_raw_data
-```
-
-Build processed windows:
-
-```bash
-python -m src.preprocessing.build_windows
-```
-
-Processed outputs are saved to:
+Live prototype:
 
 ```text
-data/processed/windows.csv
-data/processed/window_features.csv
-data/processed/preprocessing_report.txt
+gaze source adapter -> WebSocket API -> live buffer
+-> selected model -> risk score -> dashboard/logs
 ```
 
-## Step 6: Subject-Independent Train/Validation/Test Split
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for details.
 
-Processed window data can now be split for future ML training. Splitting is done by `participant_id`, not by `window_id` or `trial_id`, so the same participant cannot appear in more than one split. This avoids leakage between train and test data.
+## Selected Model
 
-No model training, neural network code, API code, frontend code, or real-time inference is implemented yet.
+- Primary model: `random_forest`
+- Fallback model: `gru`
+- Disabled model: `lstm`
+- Experimental model: `causal_tcn`
 
-Create subject-independent splits:
+Random Forest is selected for the current prototype because it has the strongest available prototype-level test F1 and a wider probability distribution. GRU remains the fallback neural sequence model.
+
+## Quick Start
+
+Install dependencies:
 
 ```bash
-python -m src.training.create_splits
+pip install -r requirements.txt
 ```
 
-Split outputs are saved to:
-
-```text
-data/processed/train_windows.csv
-data/processed/validation_windows.csv
-data/processed/test_windows.csv
-data/processed/train_window_features.csv
-data/processed/validation_window_features.csv
-data/processed/test_window_features.csv
-data/processed/split_report.txt
-```
-
-## Step 7: Baseline ML Models
-
-Baseline models can now be trained on aggregated window features. This step uses Logistic Regression and Random Forest classifiers to check whether engineered eye-tracking features contain useful signal before future neural sequence models are implemented.
-
-These baselines are not final neural sequence models and must not be interpreted as a universal lie detector. They estimate deception risk only within the controlled experimental pipeline, and the split remains subject-independent.
-
-Train baselines:
+Run a pipeline dry run:
 
 ```bash
-python -m src.models.train_baselines
+python -m src.pipeline.run_pipeline --mode full --dry-run
 ```
 
-Evaluate baselines on the test split:
-
-```bash
-python -m src.models.evaluate_baselines
-```
-
-Baseline outputs are saved to:
-
-```text
-models/baselines/
-reports/baselines/
-```
-
-## Step 8: Neural Sequence Dataset Preparation
-
-Aggregated baseline features are useful for classical ML checks, but they are not enough for future LSTM, GRU, and Causal TCN models. Neural sequence models need fixed-length time-series tensors built from raw gaze samples inside each processed window.
-
-This step creates sequence tensors from the existing subject-independent train/validation/test windows. The split remains subject-independent, and the scaler is fitted only on train sequences to avoid leakage into validation or test data.
-
-No neural network training, real-time inference, API, frontend, or universal lie detector system is implemented in this step. The project remains a controlled experimental pipeline for estimating deception risk from eye-tracking signals.
-
-Build sequence datasets:
-
-```bash
-python -m src.training.build_sequence_dataset
-```
-
-Sequence outputs are saved to:
-
-```text
-data/processed/sequences/train_sequences.npz
-data/processed/sequences/validation_sequences.npz
-data/processed/sequences/test_sequences.npz
-data/processed/sequences/sequence_feature_columns.json
-data/processed/sequences/sequence_scaler.joblib
-data/processed/sequences/sequence_dataset_report.txt
-```
-
-## Step 9: LSTM and GRU Sequence Models
-
-Sequence models are trained on tensors with shape `[N, time_steps, features]`, using the fixed-length datasets created in Step 8. LSTM and GRU classifiers are implemented first; Causal TCN is planned for the next step.
-
-The split remains subject-independent because the models use the existing train/validation/test sequence files. Results are only meaningful when validation and test splits contain participants that are separate from the training participants.
-
-Train sequence models:
-
-```bash
-python -m src.models.train_sequence_models
-```
-
-Evaluate sequence models:
-
-```bash
-python -m src.models.evaluate_sequence_models
-```
-
-Sequence model outputs are saved to:
-
-```text
-models/sequences/
-reports/sequences/
-```
-
-These neural models estimate deception risk under the controlled experimental protocol and are not universal lie detectors.
-
-## Step 10: Causal TCN Sequence Model
-
-The Causal TCN is trained on the same fixed-length sequence dataset as the LSTM and GRU models. It is closer to future real-time deployment because it uses causal temporal convolutions, so each timestep is modeled from current and past samples rather than future samples.
-
-This is still offline model training and evaluation. It does not make the system a universal lie detector, and results are only scientifically meaningful when validation and test splits contain participants separate from the training participants.
-
-Train Causal TCN:
-
-```bash
-python -m src.models.train_tcn_model
-```
-
-Evaluate Causal TCN:
-
-```bash
-python -m src.models.evaluate_tcn_model
-```
-
-Causal TCN outputs are saved to:
-
-```text
-models/sequences/tcn_model.pt
-models/sequences/tcn_training_history.json
-models/sequences/tcn_model_config.json
-reports/sequences/tcn_metrics.csv
-reports/sequences/tcn_report.txt
-reports/sequences/tcn_validation_predictions.csv
-reports/sequences/tcn_test_predictions.csv
-```
-
-## Step 11: Model Comparison and Diagnostics
-
-This step compares Logistic Regression, Random Forest, LSTM, GRU, and Causal TCN results. It does not train models. It reads existing metrics and prediction files, detects prediction collapse, ranks models by F1, and explains whether the current results are reliable or only prototype-level.
-
-Generate the comparison report:
-
-```bash
-python -m src.analysis.generate_model_comparison
-```
-
-Comparison outputs are saved to:
-
-```text
-reports/model_comparison/model_comparison_metrics.csv
-reports/model_comparison/prediction_diagnostics.csv
-reports/model_comparison/model_ranking.csv
-reports/model_comparison/model_comparison_report.txt
-reports/model_comparison/model_comparison_summary.md
-reports/model_comparison/recommendations.md
-```
-
-## Step 12: Real-Time Simulation
-
-Recorded gaze samples can now be replayed as an online stream. The simulation uses a rolling 3-second buffer, generates predictions every 0.5 seconds by default, and outputs a deception-risk probability with a risk category of `low`, `medium`, `high`, or `insufficient_data`.
-
-This step does not use a real eye tracker, and it does not create an API or frontend.
-
-Run default Random Forest simulation:
-
-```bash
-python -m src.realtime.run_realtime_simulation --model-type random_forest
-```
-
-Run GRU simulation:
-
-```bash
-python -m src.realtime.run_realtime_simulation --model-type gru
-```
-
-Run Causal TCN simulation:
-
-```bash
-python -m src.realtime.run_realtime_simulation --model-type causal_tcn
-```
-
-Simulation outputs are saved to:
-
-```text
-reports/realtime_simulation/realtime_predictions.csv
-reports/realtime_simulation/realtime_trial_summary.csv
-reports/realtime_simulation/realtime_simulation_report.txt
-reports/realtime_simulation/realtime_simulation_summary.md
-```
-
-## Step 13: Threshold Calibration and Probability Diagnostics
-
-This step analyzes model probabilities, detects cases where all predictions fall into one risk band, and sweeps thresholds from 0.05 to 0.95. It selects preliminary thresholds by F1 and conservative false-positive behavior, but it does not automatically modify runtime thresholds.
-
-Thresholds are preliminary until more participants are collected.
-
-Generate the threshold calibration report:
-
-```bash
-python -m src.analysis.generate_threshold_report
-```
-
-Calibration outputs are saved to:
-
-```text
-reports/threshold_calibration/threshold_sweep.csv
-reports/threshold_calibration/model_probability_diagnostics.csv
-reports/threshold_calibration/selected_thresholds.json
-reports/threshold_calibration/threshold_calibration_report.txt
-reports/threshold_calibration/threshold_calibration_summary.md
-reports/threshold_calibration/recommendations.md
-```
-
-## Step 14: Model Selection for Live Prototype
-
-Random Forest is selected as the current primary model for the live prototype. GRU is kept as the fallback neural model. LSTM is disabled because prediction collapse was detected. Causal TCN remains experimental because it is architecturally useful for future causal inference but currently has a narrow probability range.
-
-This step does not retrain models and does not create a production API yet.
-
-Validate selected model:
-
-```bash
-python -m src.realtime.validate_selected_model
-```
-
-Run selected model simulation:
-
-```bash
-python -m src.realtime.run_selected_model_simulation
-```
-
-Model selection outputs are saved to:
-
-```text
-reports/model_selection/
-```
-
-## Step 15: FastAPI/WebSocket Live Inference Service
-
-A local backend service was added for live deception-risk inference. It loads the selected model from Step 14, exposes REST and WebSocket interfaces, returns probability and risk category, and logs live predictions to `reports/live_inference`.
-
-This is still a prototype service. It is not a production lie detector and does not include a frontend, authentication, database, Docker deployment, or real eye-tracker SDK integration.
-
-Run the API:
+Start the API:
 
 ```bash
 uvicorn src.api.app:app --reload
 ```
 
-Useful checks:
+Check API status:
 
-```bash
-curl http://127.0.0.1:8000/health
-curl http://127.0.0.1:8000/status
+```text
+http://127.0.0.1:8000/status
 ```
 
-## Step 16: WebSocket Live Test Client
-
-The WebSocket test client sends recorded gaze samples to the running FastAPI WebSocket endpoint. It validates end-to-end streaming inference and saves received predictions and summaries. This is still replay testing, not live eye-tracker deployment.
-
-Start API:
-
-```bash
-uvicorn src.api.app:app --reload
-```
-
-Run client:
-
-```bash
-python scripts/live_ws_test_client.py
-```
-
-Example limited replay:
-
-```bash
-python scripts/live_ws_test_client.py --max-trials 3
-```
-
-## Step 17: Minimal Live Monitor Dashboard
-
-A simple HTML/JavaScript dashboard was added for the live WebSocket inference API. It connects to the WebSocket service, displays probability, smoothed probability, risk category, valid ratio, sample count, latency, recent prediction history, and event logs. It can also send mock samples for testing.
-
-This is not a full production frontend.
-
-Start API:
-
-```bash
-uvicorn src.api.app:app --reload
-```
-
-Open dashboard directly:
+Open the dashboard:
 
 ```text
 web/live_monitor.html
 ```
 
-Or open it through the API static route:
+Or:
 
 ```text
 http://127.0.0.1:8000/static/live_monitor.html
 ```
 
-## Step 18: Gaze Source Adapter Interface
+## Main Commands
 
-A unified adapter interface was added so future gaze sources can be swapped without changing the live inference API. Mock and recorded CSV adapters are implemented. Webcam and real eye tracker adapters are placeholders for future integration.
-
-Start API:
-
-```bash
-uvicorn src.api.app:app --reload
-```
-
-Stream mock gaze samples:
-
-```bash
-python -m src.gaze_sources.stream_to_api --source mock --duration-seconds 10
-```
-
-Stream recorded CSV samples:
-
-```bash
-python -m src.gaze_sources.stream_to_api --source recorded_csv --max-trials 3
-```
-
-## Step 19: Real Data Collection Workflow
-
-The data collection workflow was improved so the project is ready to collect more participants. Participant metadata is anonymous, the app includes a consent note, calibration status is recorded, session quality reports are generated, and a collection checklist is available.
-
-Generate the data collection checklist:
+Collect data:
 
 ```bash
 python -m src.data_collection.collection_checklist
-```
-
-Run the experiment app:
-
-```bash
 python -m src.data_collection.experiment_app
 ```
 
-New append-only metadata and quality files are saved under `data/raw/`, and session reports are saved under `reports/data_collection/`.
-
-## Final Report Generation
-
-Generate the final Word technical/research report:
+Run the full pipeline:
 
 ```bash
-python scripts/generate_final_report.py
+python -m src.pipeline.run_pipeline --mode full
 ```
 
-The report is saved to:
+Run reports only:
+
+```bash
+python -m src.pipeline.run_pipeline --mode reports
+```
+
+Generate tracking report:
+
+```bash
+python -m src.tracking.generate_tracking_report
+```
+
+Generate handoff package:
+
+```bash
+python scripts/create_handoff_package.py
+```
+
+## Project Structure
 
 ```text
-reports/final_report/eye_tracking_deception_report.docx
+data/                 Raw and processed datasets
+docs/                 Final project guides
+models/               Trained model artifacts
+reports/              Metrics, diagnostics, logs, and handoff package
+scripts/              Utility scripts
+src/analysis/         Model comparison and threshold diagnostics
+src/api/              FastAPI/WebSocket live inference service
+src/data_collection/  Experiment app and session quality tools
+src/gaze_sources/     Mock/recorded gaze source adapters
+src/models/           Baseline and neural model training/evaluation
+src/pipeline/         One-command pipeline runner
+src/preprocessing/    Raw data validation and windowing
+src/realtime/         Realtime predictor, simulation, and model selection
+src/tracking/         Dataset versioning and run tracking
+src/training/         Splits and sequence dataset preparation
+web/                  Minimal live monitor dashboard
 ```
 
-If local PDF conversion support is available, the script also creates:
+## Important Reports
 
-```text
-reports/final_report/eye_tracking_deception_report.pdf
-```
+- `reports/model_comparison/model_comparison_report.txt`
+- `reports/threshold_calibration/threshold_calibration_report.txt`
+- `reports/model_selection/model_selection_report.txt`
+- `reports/tracking/tracking_report.txt`
+- `reports/pipeline/pipeline_run_report.txt`
+- `reports/handoff_package/HANDOFF_README.md`
+
+See [docs/REPORTS_INDEX.md](docs/REPORTS_INDEX.md).
+
+## Detailed Documentation
+
+- [Final Project Overview](docs/FINAL_PROJECT_OVERVIEW.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Data Collection Guide](docs/DATA_COLLECTION_GUIDE.md)
+- [Dataset Guide](docs/DATASET_GUIDE.md)
+- [ML Pipeline Guide](docs/ML_PIPELINE_GUIDE.md)
+- [Model Evaluation Guide](docs/MODEL_EVALUATION_GUIDE.md)
+- [Live Inference Guide](docs/LIVE_INFERENCE_GUIDE.md)
+- [Dashboard Guide](docs/DASHBOARD_GUIDE.md)
+- [Reproducibility Guide](docs/REPRODUCIBILITY_GUIDE.md)
+- [Ethics and Limitations](docs/ETHICS_AND_LIMITATIONS.md)
+- [Future Work](docs/FUTURE_WORK.md)
+- [Troubleshooting](docs/TROUBLESHOOTING.md)
+- [Reports Index](docs/REPORTS_INDEX.md)
+
+## Limitations
+
+Current results are prototype-level because the dataset is small. Thresholds are preliminary. LSTM collapsed to single-class prediction, and Causal TCN is still experimental. Real deployment requires more participants, real hardware testing, calibration validation, ethics approval, and human oversight.
+
+## Future Work
+
+Next priorities are collecting more participants, rerunning the full pipeline, recalibrating thresholds, integrating a real eye tracker SDK, improving neural sequence models with more data, and adding production engineering only after the research pipeline is stronger.

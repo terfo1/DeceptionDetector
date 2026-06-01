@@ -1,0 +1,239 @@
+{
+  "run_version": "run_v002",
+  "created_at": "2026-06-01T16:11:27",
+  "dataset_version": "dataset_v002",
+  "git_commit_optional": "a14e418",
+  "model_metrics_summary": [
+    {
+      "split": "validation",
+      "model_name": "logistic_regression",
+      "accuracy": 0.125,
+      "balanced_accuracy": 0.125,
+      "precision": 0.2,
+      "recall": 0.25,
+      "f1": 0.2222222222222222,
+      "roc_auc": 0.125,
+      "false_positive_rate": 1.0,
+      "false_negative_rate": 0.75,
+      "number_of_samples": 8
+    },
+    {
+      "split": "validation",
+      "model_name": "random_forest",
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5,
+      "precision": 0.5,
+      "recall": 0.75,
+      "f1": 0.6,
+      "roc_auc": 0.25,
+      "false_positive_rate": 0.75,
+      "false_negative_rate": 0.25,
+      "number_of_samples": 8
+    },
+    {
+      "split": "test",
+      "model_name": "logistic_regression",
+      "accuracy": 0.4583333333333333,
+      "balanced_accuracy": 0.4583333333333333,
+      "precision": 0.4705882352941176,
+      "recall": 0.6666666666666666,
+      "f1": 0.5517241379310345,
+      "roc_auc": 0.6111111111111112,
+      "false_positive_rate": 0.75,
+      "false_negative_rate": 0.3333333333333333,
+      "number_of_samples": 24
+    },
+    {
+      "split": "test",
+      "model_name": "random_forest",
+      "accuracy": 0.625,
+      "balanced_accuracy": 0.625,
+      "precision": 0.6,
+      "recall": 0.75,
+      "f1": 0.6666666666666666,
+      "roc_auc": 0.5694444444444444,
+      "false_positive_rate": 0.5,
+      "false_negative_rate": 0.25,
+      "number_of_samples": 24
+    },
+    {
+      "split": "validation",
+      "model_name": "lstm",
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.5625,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 1.0,
+      "number_of_samples": 8
+    },
+    {
+      "split": "validation",
+      "model_name": "gru",
+      "accuracy": 0.625,
+      "balanced_accuracy": 0.625,
+      "precision": 0.5714285714285714,
+      "recall": 1.0,
+      "f1": 0.7272727272727273,
+      "roc_auc": 0.625,
+      "false_positive_rate": 0.75,
+      "false_negative_rate": 0.0,
+      "number_of_samples": 8
+    },
+    {
+      "split": "test",
+      "model_name": "lstm",
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.625,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 1.0,
+      "number_of_samples": 24
+    },
+    {
+      "split": "test",
+      "model_name": "gru",
+      "accuracy": 0.4583333333333333,
+      "balanced_accuracy": 0.4583333333333333,
+      "precision": 0.4761904761904761,
+      "recall": 0.8333333333333334,
+      "f1": 0.6060606060606061,
+      "roc_auc": 0.4097222222222222,
+      "false_positive_rate": 0.9166666666666666,
+      "false_negative_rate": 0.1666666666666666,
+      "number_of_samples": 24
+    },
+    {
+      "split": "validation",
+      "model_name": "causal_tcn",
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.3125,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 1.0,
+      "number_of_samples": 8
+    },
+    {
+      "split": "test",
+      "model_name": "causal_tcn",
+      "accuracy": 0.4583333333333333,
+      "balanced_accuracy": 0.4583333333333333,
+      "precision": 0.4285714285714285,
+      "recall": 0.25,
+      "f1": 0.3157894736842105,
+      "roc_auc": 0.4930555555555556,
+      "false_positive_rate": 0.3333333333333333,
+      "false_negative_rate": 0.75,
+      "number_of_samples": 24
+    }
+  ],
+  "best_model_summary": {
+    "best_model_name": "random_forest",
+    "best_split": "test",
+    "best_f1": 0.6666666666666666,
+    "best_accuracy": 0.625,
+    "best_roc_auc": 0.5694444444444444,
+    "false_positive_rate": 0.5,
+    "false_negative_rate": 0.25,
+    "number_of_samples": 24
+  },
+  "model_selection": {
+    "selected_model": "random_forest",
+    "fallback_model": "gru",
+    "disabled_models": [
+      "lstm"
+    ],
+    "experimental_models": [
+      "causal_tcn"
+    ]
+  },
+  "tracked_report_hashes": [
+    {
+      "path": "data/processed/preprocessing_report.txt",
+      "exists": true,
+      "size_bytes": 376,
+      "modified_at": "2026-06-01T15:53:07",
+      "sha256": "c2aa15941830931293db532896c6bb9d58337348d0bb234913400af8e0b00c07"
+    },
+    {
+      "path": "data/processed/split_report.txt",
+      "exists": true,
+      "size_bytes": 680,
+      "modified_at": "2026-05-11T17:03:36",
+      "sha256": "3c706b5651e7d2942f86cfa5b9dcabd0e7f8890e8cdc01981a232fd4be9c21f7"
+    },
+    {
+      "path": "data/processed/sequences/sequence_dataset_report.txt",
+      "exists": true,
+      "size_bytes": 1347,
+      "modified_at": "2026-06-01T10:56:36",
+      "sha256": "baefa4777437f1c399f2b40b88e3f84dfbdf7102eb2c416d4247fd4d0d96c3e8"
+    },
+    {
+      "path": "reports/baselines/baseline_metrics.csv",
+      "exists": true,
+      "size_bytes": 686,
+      "modified_at": "2026-05-11T17:03:54",
+      "sha256": "30511ba65b4dac69ed2b2c31aaac42f313a005896a561b906a7ae5e3da03ccba"
+    },
+    {
+      "path": "reports/sequences/sequence_model_metrics.csv",
+      "exists": true,
+      "size_bytes": 1000,
+      "modified_at": "2026-06-01T11:24:35",
+      "sha256": "7232776e7be8e7e9d402d3038a3641c30eeecf960aff3d3a69e73bdc5bd6aef0"
+    },
+    {
+      "path": "reports/sequences/tcn_metrics.csv",
+      "exists": true,
+      "size_bytes": 475,
+      "modified_at": "2026-06-01T11:24:35",
+      "sha256": "3bb92ee703738b2a039b932d4def0c99b31ead26df89dff84be3b7b517fad6bf"
+    },
+    {
+      "path": "reports/model_comparison/model_ranking.csv",
+      "exists": true,
+      "size_bytes": 766,
+      "modified_at": "2026-06-01T11:39:55",
+      "sha256": "bc371c463f4739d9a4d92e3e20d1cfc9ad4815efd9ddce7fdc68b7cdd4521e5d"
+    },
+    {
+      "path": "reports/model_comparison/model_comparison_report.txt",
+      "exists": true,
+      "size_bytes": 4993,
+      "modified_at": "2026-06-01T11:39:55",
+      "sha256": "80b4819f726157d33fff2f266d6a56d40a45dd4c5b0970f4489078deecc0dd20"
+    },
+    {
+      "path": "reports/threshold_calibration/selected_thresholds.json",
+      "exists": true,
+      "size_bytes": 11934,
+      "modified_at": "2026-06-01T12:19:46",
+      "sha256": "3e7d900c204aa6b97626d7c721f138d5242394d6cde8dba94a301a5f698b99b9"
+    },
+    {
+      "path": "reports/model_selection/selected_model_config.json",
+      "exists": true,
+      "size_bytes": 1042,
+      "modified_at": "2026-06-01T12:32:55",
+      "sha256": "b1ffd7cf9ad8007f5692793d04021c033da66fc8ca7b2d8fd1efe2b581b076fc"
+    },
+    {
+      "path": "reports/model_selection/model_selection_report.txt",
+      "exists": true,
+      "size_bytes": 1845,
+      "modified_at": "2026-06-01T12:32:55",
+      "sha256": "9ff8caacf8feefa5b8f85de2a4090e0c2d5ed3e738a92be3e3197b5e674cecad"
+    }
+  ],
+  "warnings": [],
+  "note": "This run tracks prototype-level model experiments. Metrics are only scientifically meaningful with sufficient participant count and subject-independent evaluation."
+}

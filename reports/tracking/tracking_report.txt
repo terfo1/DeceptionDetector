@@ -1,0 +1,65 @@
+Dataset Versioning and Experiment Run Tracking Report
+
+1. Overview
+This report records dataset version and experiment run metadata for reproducibility. It uses local JSON, CSV, and Markdown files only.
+
+2. Dataset Version
+Dataset version: dataset_v002
+Participant count: 5
+Session count: 8
+Trial count: 56
+Gaze sample count: 6567
+Train windows: 8
+Validation windows: 8
+Test windows: 24
+Total windows: 40
+Train participants: 1
+Validation participants: 1
+Test participants: 1
+Total split participants: 3
+
+3. File Hashes
+SHA256 hashes are saved in file_hashes_latest.csv and in the JSON manifests to detect whether tracked files changed between runs.
+Tracked files found: 29
+Tracked files missing: 0
+
+4. Experiment Run
+Run version: run_v002
+Linked dataset version: dataset_v002
+Selected model: random_forest
+Fallback model: gru
+Best model by available F1: random_forest
+Best split: test
+Best F1: 0.6666666666666666
+Best accuracy: 0.625
+Best ROC-AUC: 0.5694444444444444
+
+Metrics summary:
+- validation / logistic_regression: F1=0.2222222222222222, accuracy=0.125, ROC-AUC=0.125, samples=8
+- validation / random_forest: F1=0.6, accuracy=0.5, ROC-AUC=0.25, samples=8
+- test / logistic_regression: F1=0.5517241379310345, accuracy=0.4583333333333333, ROC-AUC=0.6111111111111112, samples=24
+- test / random_forest: F1=0.6666666666666666, accuracy=0.625, ROC-AUC=0.5694444444444444, samples=24
+- validation / lstm: F1=0.0, accuracy=0.5, ROC-AUC=0.5625, samples=8
+- validation / gru: F1=0.7272727272727273, accuracy=0.625, ROC-AUC=0.625, samples=8
+- test / lstm: F1=0.0, accuracy=0.5, ROC-AUC=0.625, samples=24
+- test / gru: F1=0.6060606060606061, accuracy=0.4583333333333333, ROC-AUC=0.4097222222222222, samples=24
+- validation / causal_tcn: F1=0.0, accuracy=0.5, ROC-AUC=0.3125, samples=8
+- test / causal_tcn: F1=0.3157894736842105, accuracy=0.4583333333333333, ROC-AUC=0.4930555555555556, samples=24
+
+5. Reproducibility Status
+- data/raw/trials.csv: OK
+- data/raw/gaze_samples.csv: OK
+- data/processed/windows.csv: OK
+- data/processed/window_features.csv: OK
+- data/processed/split_report.txt: OK
+- reports/model_comparison/model_comparison_report.txt: OK
+- reports/model_selection/model_selection_report.txt: OK
+
+6. Warnings
+- Participant count is below the preferred reliability threshold of 10.
+
+7. Scientific Note
+Current results are prototype-level unless enough participants are collected and the participant-independent split is preserved. The system estimates deception risk under a controlled experimental protocol; it does not determine definitive lying.
+
+8. Recommended Next Action
+Collect more participants, rerun the full pipeline, regenerate this tracking report, and compare dataset_versions.csv, experiment_runs.csv, and metric_history.csv across runs.

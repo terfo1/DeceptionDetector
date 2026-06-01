@@ -6,13 +6,6 @@
   },
   "models": {
     "causal_tcn": {
-      "realtime_simulation": {
-        "best_f1_threshold": 0.05,
-        "best_balanced_accuracy_threshold": 0.51,
-        "conservative_threshold": 0.51,
-        "suggested_low_threshold": 0.47888823986053464,
-        "suggested_high_threshold": 0.5008716368675232
-      },
       "test": {
         "best_f1_threshold": 0.45,
         "best_balanced_accuracy_threshold": 0.45,
@@ -77,6 +70,13 @@
       }
     },
     "random_forest": {
+      "realtime_simulation": {
+        "best_f1_threshold": 0.26,
+        "best_balanced_accuracy_threshold": 0.43,
+        "conservative_threshold": 0.57,
+        "suggested_low_threshold": 0.455,
+        "suggested_high_threshold": 0.535
+      },
       "test": {
         "best_f1_threshold": 0.43,
         "best_balanced_accuracy_threshold": 0.5,
@@ -96,24 +96,24 @@
   "probability_diagnostics": [
     {
       "split": "realtime_simulation",
-      "model_name": "causal_tcn",
+      "model_name": "random_forest",
       "n_samples": 209,
       "n_truth": 102,
       "n_lie": 107,
-      "probability_min": 0.4397773444652557,
-      "probability_max": 0.547319233417511,
-      "probability_mean": 0.49135581942266254,
-      "probability_std": 0.023041660418984623,
-      "probability_median": 0.4882551431655884,
-      "probability_q10": 0.46541501283645625,
-      "probability_q25": 0.4737663865089416,
-      "probability_q75": 0.5075698494911194,
-      "probability_q90": 0.5236084461212158,
-      "probability_range": 0.1075418889522553,
-      "narrow_probability_range": true,
-      "mean_probability_truth": 0.4912980783219431,
-      "mean_probability_lie": 0.49141086234110537,
-      "separation": 0.00011278401916225977
+      "probability_min": 0.22,
+      "probability_max": 0.805,
+      "probability_mean": 0.5122727272727272,
+      "probability_std": 0.11612556013009577,
+      "probability_median": 0.49,
+      "probability_q10": 0.393,
+      "probability_q25": 0.435,
+      "probability_q75": 0.58,
+      "probability_q90": 0.6920000000000002,
+      "probability_range": 0.5850000000000001,
+      "narrow_probability_range": false,
+      "mean_probability_truth": 0.5031862745098039,
+      "mean_probability_lie": 0.5209345794392523,
+      "separation": 0.017748304929448344
     },
     {
       "split": "test",

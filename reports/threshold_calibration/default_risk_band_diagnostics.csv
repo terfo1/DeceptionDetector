@@ -1,5 +1,5 @@
 split,model_name,low_count,medium_count,high_count,low_ratio,medium_ratio,high_ratio,all_medium_detected
-realtime_simulation,causal_tcn,0,209,0,0.0,1.0,0.0,True
+realtime_simulation,random_forest,22,166,21,0.10526315789473684,0.7942583732057417,0.10047846889952153,False
 test,causal_tcn,0,24,0,0.0,1.0,0.0,True
 test,gru,0,24,0,0.0,1.0,0.0,True
 test,logistic_regression,7,5,12,0.2916666666666667,0.20833333333333334,0.5,False

@@ -1,5 +1,5 @@
 split,model_name,low_threshold_candidate,high_threshold_candidate,probability_min,probability_max,warning
-realtime_simulation,causal_tcn,0.47888823986053464,0.5008716368675232,0.4397773444652557,0.547319233417511,Quantile-based risk bands are diagnostic only and should not be used as final thresholds with small datasets.
+realtime_simulation,random_forest,0.455,0.535,0.22,0.805,Quantile-based risk bands are diagnostic only and should not be used as final thresholds with small datasets.
 test,causal_tcn,0.4788657861948013,0.49561219036579135,0.4494540095329284,0.5128103494644165,Quantile-based risk bands are diagnostic only and should not be used as final thresholds with small datasets.
 test,gru,0.5112759667634964,0.5210894656181335,0.492399126291275,0.5424994230270386,Quantile-based risk bands are diagnostic only and should not be used as final thresholds with small datasets.
 test,logistic_regression,0.5584039744195844,0.8765790645811641,0.0627599319634081,0.990673701022588,Quantile-based risk bands are diagnostic only and should not be used as final thresholds with small datasets.

@@ -1,0 +1,45 @@
+{
+  "generated_at": "2026-06-01T16:30:50",
+  "project_title": "Real-Time Eye-Tracking-Based Deception Risk Detection Using Neural Networks",
+  "selected_model": "random_forest",
+  "fallback_model": "gru",
+  "disabled_models": [
+    "lstm"
+  ],
+  "experimental_models": [
+    "causal_tcn"
+  ],
+  "important_docs": [
+    "docs/FINAL_PROJECT_OVERVIEW.md",
+    "docs/ARCHITECTURE.md",
+    "docs/DATA_COLLECTION_GUIDE.md",
+    "docs/DATASET_GUIDE.md",
+    "docs/ML_PIPELINE_GUIDE.md",
+    "docs/MODEL_EVALUATION_GUIDE.md",
+    "docs/LIVE_INFERENCE_GUIDE.md",
+    "docs/DASHBOARD_GUIDE.md",
+    "docs/REPRODUCIBILITY_GUIDE.md",
+    "docs/ETHICS_AND_LIMITATIONS.md",
+    "docs/FUTURE_WORK.md",
+    "docs/TROUBLESHOOTING.md",
+    "docs/REPORTS_INDEX.md"
+  ],
+  "important_reports": [
+    "reports/model_comparison/model_comparison_report.txt",
+    "reports/threshold_calibration/threshold_calibration_report.txt",
+    "reports/model_selection/model_selection_report.txt",
+    "reports/tracking/tracking_report.txt",
+    "reports/pipeline/pipeline_run_report.txt"
+  ],
+  "key_commands": [
+    "python -m src.pipeline.run_pipeline --mode full --dry-run",
+    "python -m src.pipeline.run_pipeline --mode full",
+    "uvicorn src.api.app:app --reload",
+    "python scripts/live_ws_test_client.py",
+    "python -m src.tracking.generate_tracking_report"
+  ],
+  "warnings": [
+    "The project estimates deception risk under controlled experimental conditions and is not a universal lie detector.",
+    "Current metrics are prototype-level because the dataset is small."
+  ]
+}

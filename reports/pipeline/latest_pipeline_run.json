@@ -1,0 +1,45 @@
+{
+  "mode": "reports",
+  "dry_run": false,
+  "started_at": "2026-06-01T16:21:13",
+  "finished_at": "2026-06-01T16:21:20",
+  "total_duration_seconds": 6.728,
+  "pipeline_status": "success",
+  "summary": {
+    "total_steps": 2,
+    "passed_steps": 2,
+    "failed_steps": 0,
+    "skipped_steps": 0,
+    "critical_failures": 0,
+    "total_duration_seconds": 6.728,
+    "pipeline_status": "success"
+  },
+  "steps": [
+    {
+      "step_name": "generate_model_comparison",
+      "description": "Generate model comparison and diagnostics report.",
+      "command": "python -m src.analysis.generate_model_comparison",
+      "critical": false,
+      "status": "passed",
+      "return_code": 0,
+      "started_at": "2026-06-01T16:21:13",
+      "finished_at": "2026-06-01T16:21:14",
+      "duration_seconds": 0.711,
+      "stdout_tail": "Generating model comparison and diagnostics...\nmatplotlib is not available. Plot generation skipped.\nBest model by available f1: random_forest\nCollapsed models detected: causal_tcn, lstm\nFiles saved to reports/model_comparison\n",
+      "stderr_tail": ""
+    },
+    {
+      "step_name": "generate_threshold_report",
+      "description": "Generate threshold calibration and probability diagnostics report.",
+      "command": "python -m src.analysis.generate_threshold_report",
+      "critical": false,
+      "status": "passed",
+      "return_code": 0,
+      "started_at": "2026-06-01T16:21:14",
+      "finished_at": "2026-06-01T16:21:20",
+      "duration_seconds": 6.016,
+      "stdout_tail": "Generating threshold calibration and probability diagnostics...\nmatplotlib is not available. Plot generation skipped.\nLoaded prediction rows: 369\nAll-medium model/split pairs: test/causal_tcn, test/gru, test/lstm, validation/causal_tcn, validation/gru, validation/lstm\nFiles saved to reports/threshold_calibration\n",
+      "stderr_tail": ""
+    }
+  ]
+}

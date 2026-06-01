@@ -1,5 +1,5 @@
 Model Comparison and Diagnostics Report
-Generated: 2026-06-01T11:39:55
+Generated: 2026-06-01T16:21:14
 
 1. Overview
 This report compares baseline models and neural sequence models trained in the controlled eye-tracking deception-risk pipeline.
