@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Eye-Tracking Deception Risk Live Monitor</title>
+    <link rel="stylesheet" href="live_monitor.css">
+  </head>
+  <body>
+    <header class="page-header">
+      <div>
+        <h1>Eye-Tracking Deception Risk Live Monitor</h1>
+        <p>Prototype live inference dashboard</p>
+      </div>
+      <p class="warning">
+        This system estimates deception-risk patterns under controlled experimental conditions. It is not a universal lie detector.
+      </p>
+    </header>
+
+    <main class="layout">
+      <section class="card connection-card">
+        <h2>Connection</h2>
+        <div class="form-grid">
+          <label>
+            WebSocket URL
+            <input id="wsUrl" type="text" value="ws://127.0.0.1:8000/ws/live">
+          </label>
+          <label>
+            Session ID
+            <input id="sessionId" type="text" value="DASHBOARD_SESSION_001">
+          </label>
+          <label>
+            Trial ID
+            <input id="trialId" type="text" value="DASHBOARD_TRIAL_001">
+          </label>
+        </div>
+        <div class="button-row">
+          <button id="connectBtn">Connect</button>
+          <button id="disconnectBtn">Disconnect</button>
+          <button id="startSessionBtn">Start Session</button>
+          <button id="startTrialBtn">Start Trial</button>
+          <button id="endTrialBtn">End Trial</button>
+          <button id="endSessionBtn">End Session</button>
+          <button id="resetBtn">Reset</button>
+        </div>
+        <div class="status-line">
+          Status: <span id="connectionStatus" class="status-badge disconnected">disconnected</span>
+        </div>
+      </section>
+
+      <section class="card prediction-card">
+        <h2>Current Prediction</h2>
+        <div class="prediction-grid">
+          <div><span>Model</span><strong id="modelType">-</strong></div>
+          <div><span>Probability</span><strong id="probability">-</strong></div>
+          <div><span>Smoothed</span><strong id="smoothedProbability">-</strong></div>
+          <div><span>Risk</span><strong id="riskBadge" class="risk-badge insufficient_data">insufficient_data</strong></div>
+          <div><span>Valid Ratio</span><strong id="validRatio">-</strong></div>
+          <div><span>Samples</span><strong id="sampleCount">-</strong></div>
+          <div><span>Latency</span><strong id="latencyMs">-</strong></div>
+          <div><span>Timestamp</span><strong id="currentTimestamp">-</strong></div>
+        </div>
+      </section>
+
+      <section class="card mock-card">
+        <h2>Mock Sample Controls</h2>
+        <p class="muted">Mock samples test the WebSocket flow. They are not real eye tracking.</p>
+        <div class="button-row">
+          <button id="sendSampleBtn">Send One Mock Sample</button>
+          <button id="startStreamBtn">Start Mock Stream</button>
+          <button id="stopStreamBtn">Stop Mock Stream</button>
+        </div>
+      </section>
+
+      <section class="card chart-card">
+        <h2>Probability History</h2>
+        <canvas id="probabilityChart" width="900" height="260"></canvas>
+      </section>
+
+      <section class="card table-card">
+        <h2>Recent Predictions</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Time</th>
+                <th>Probability</th>
+                <th>Smoothed</th>
+                <th>Risk</th>
+                <th>Valid</th>
+                <th>Samples</th>
+                <th>Latency</th>
+              </tr>
+            </thead>
+            <tbody id="historyTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card log-card">
+        <h2>Event Log</h2>
+        <div id="eventLog" class="event-log"></div>
+      </section>
+    </main>
+
+    <script src="live_monitor.js"></script>
+  </body>
+</html>

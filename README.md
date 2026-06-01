@@ -323,6 +323,52 @@ curl http://127.0.0.1:8000/health
 curl http://127.0.0.1:8000/status
 ```
 
+## Step 16: WebSocket Live Test Client
+
+The WebSocket test client sends recorded gaze samples to the running FastAPI WebSocket endpoint. It validates end-to-end streaming inference and saves received predictions and summaries. This is still replay testing, not live eye-tracker deployment.
+
+Start API:
+
+```bash
+uvicorn src.api.app:app --reload
+```
+
+Run client:
+
+```bash
+python scripts/live_ws_test_client.py
+```
+
+Example limited replay:
+
+```bash
+python scripts/live_ws_test_client.py --max-trials 3
+```
+
+## Step 17: Minimal Live Monitor Dashboard
+
+A simple HTML/JavaScript dashboard was added for the live WebSocket inference API. It connects to the WebSocket service, displays probability, smoothed probability, risk category, valid ratio, sample count, latency, recent prediction history, and event logs. It can also send mock samples for testing.
+
+This is not a full production frontend.
+
+Start API:
+
+```bash
+uvicorn src.api.app:app --reload
+```
+
+Open dashboard directly:
+
+```text
+web/live_monitor.html
+```
+
+Or open it through the API static route:
+
+```text
+http://127.0.0.1:8000/static/live_monitor.html
+```
+
 ## Final Report Generation
 
 Generate the final Word technical/research report:

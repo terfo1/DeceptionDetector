@@ -1,0 +1,50 @@
+WebSocket Live Client Test Report
+Generated: 2026-06-01T14:29:43
+
+1. Overview
+This report validates the live WebSocket inference endpoint using recorded gaze samples.
+
+2. API URL
+- ws://127.0.0.1:8000/ws/live
+
+3. Session Info
+- session_id: WS_TEST_001
+- trials requested: 5
+- trials completed: 5
+- real_time_sleep: False
+
+4. Prediction Summary
+- total predictions received: 19
+- low predictions: 4
+- medium predictions: 14
+- high predictions: 1
+- insufficient_data predictions: 0
+- mean probability: 0.4747
+- max probability: 0.7950
+- mean latency ms: 66.9043
+- max latency ms: 96.7220
+
+5. Trial Summary
+- T001: predictions=3, final_risk=medium, mean_probability=0.4083
+- T002: predictions=5, final_risk=low, mean_probability=0.3700
+- T003: predictions=3, final_risk=medium, mean_probability=0.4017
+- T004: predictions=4, final_risk=medium, mean_probability=0.5375
+- T005: predictions=4, final_risk=high, mean_probability=0.6475
+
+6. Errors
+None
+
+7. Interpretation
+This confirms the WebSocket API can receive gaze samples and return live risk predictions.
+It is still a replay test, not real eye-tracker deployment.
+
+8. Limitations
+- Replayed recorded data, not live hardware.
+- Current selected model is prototype-level.
+- Dataset is small.
+- Predictions are risk indicators, not final lie judgments.
+
+9. Next Step
+- Build a minimal dashboard or CLI monitor.
+- Then connect a real eye tracker or webcam gaze estimator.
+- Collect more participants.

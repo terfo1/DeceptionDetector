@@ -55,3 +55,34 @@ Invoke-RestMethod -Uri "http://127.0.0.1:8000/predict/window" -Method POST -Body
 ```
 
 WebSocket `/ws/live` accepts `start_session`, `start_trial`, `sample`, `end_trial`, `end_session`, and `reset` messages.
+
+## WebSocket Test Client
+
+The test client replays recorded gaze samples through the live WebSocket endpoint.
+
+Before running the client, start the API:
+
+```bash
+uvicorn src.api.app:app --reload
+```
+
+Then run:
+
+```bash
+python scripts/live_ws_test_client.py
+```
+
+Examples:
+
+```bash
+python scripts/live_ws_test_client.py --max-trials 3
+python scripts/live_ws_test_client.py --trial-id T001
+python scripts/live_ws_test_client.py --real-time-sleep --sleep-scale 0.5
+```
+
+Outputs:
+
+- `reports/live_ws_client/ws_client_predictions.csv`
+- `reports/live_ws_client/ws_client_trial_summary.csv`
+- `reports/live_ws_client/ws_client_report.txt`
+- `reports/live_ws_client/ws_client_summary.md`

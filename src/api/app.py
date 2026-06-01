@@ -7,6 +7,7 @@ from uuid import uuid4
 import pandas as pd
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import ValidationError
 
 from src.api.live_logger import LiveInferenceLogger
@@ -31,6 +32,7 @@ from src.realtime.realtime_predictor import RealtimePredictor
 
 
 app = FastAPI(title="Eye-Tracking Deception Risk Live Inference API")
+app.mount("/static", StaticFiles(directory="web"), name="static")
 
 logger = LiveInferenceLogger()
 live_sessions: dict[str, LiveInferenceSession] = {}
