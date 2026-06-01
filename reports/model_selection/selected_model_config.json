@@ -1,0 +1,37 @@
+{
+  "selected_model": "random_forest",
+  "fallback_model": "gru",
+  "disabled_models": [
+    "lstm"
+  ],
+  "experimental_models": [
+    "causal_tcn"
+  ],
+  "thresholds": {
+    "random_forest": {
+      "binary_threshold": 0.5,
+      "low": 0.4,
+      "high": 0.7,
+      "note": "Use default thresholds for runtime prototype. Calibration thresholds are preliminary."
+    },
+    "gru": {
+      "binary_threshold": 0.5,
+      "low": 0.4,
+      "high": 0.7,
+      "note": "Fallback neural model. Probability range is narrow on current data."
+    },
+    "causal_tcn": {
+      "binary_threshold": 0.5,
+      "low": 0.4,
+      "high": 0.7,
+      "note": "Experimental only. Narrow probability range observed."
+    }
+  },
+  "selected_model_files_ok": true,
+  "fallback_model_files_ok": true,
+  "warnings": [
+    "Thresholds are preliminary because the dataset is small.",
+    "The selected model is for prototype decision-support only.",
+    "The system must not be interpreted as a universal lie detector."
+  ]
+}

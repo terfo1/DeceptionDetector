@@ -1,0 +1,12 @@
+split,model_name,low_threshold_candidate,high_threshold_candidate,probability_min,probability_max,warning
+realtime_simulation,causal_tcn,0.47888823986053464,0.5008716368675232,0.4397773444652557,0.547319233417511,Quantile-based risk bands are diagnostic only and should not be used as final thresholds with small datasets.
+test,causal_tcn,0.4788657861948013,0.49561219036579135,0.4494540095329284,0.5128103494644165,Quantile-based risk bands are diagnostic only and should not be used as final thresholds with small datasets.
+test,gru,0.5112759667634964,0.5210894656181335,0.492399126291275,0.5424994230270386,Quantile-based risk bands are diagnostic only and should not be used as final thresholds with small datasets.
+test,logistic_regression,0.5584039744195844,0.8765790645811641,0.0627599319634081,0.990673701022588,Quantile-based risk bands are diagnostic only and should not be used as final thresholds with small datasets.
+test,lstm,0.4592484241724014,0.464181028008461,0.4499260783195495,0.4708046019077301,Quantile-based risk bands are diagnostic only and should not be used as final thresholds with small datasets.
+test,random_forest,0.48885,0.6359,0.335,0.73,Quantile-based risk bands are diagnostic only and should not be used as final thresholds with small datasets.
+validation,causal_tcn,0.47976938158273696,0.4868900257349014,0.4634694457054138,0.4968651533126831,Quantile-based risk bands are diagnostic only and should not be used as final thresholds with small datasets.
+validation,gru,0.5118395501375198,0.5259517002105712,0.4991259276866913,0.5318193435668945,Quantile-based risk bands are diagnostic only and should not be used as final thresholds with small datasets.
+validation,logistic_regression,0.472233207799778,0.8103656177671247,0.1982191680729371,0.966224943722745,Quantile-based risk bands are diagnostic only and should not be used as final thresholds with small datasets.
+validation,lstm,0.4589362949132919,0.4625167101621628,0.4494370520114898,0.4767633974552154,Quantile-based risk bands are diagnostic only and should not be used as final thresholds with small datasets.
+validation,random_forest,0.5112,0.6681,0.44,0.795,Quantile-based risk bands are diagnostic only and should not be used as final thresholds with small datasets.

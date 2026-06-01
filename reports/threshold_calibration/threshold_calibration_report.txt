@@ -1,0 +1,122 @@
+Threshold Calibration and Probability Diagnostics Report
+Generated: 2026-06-01T12:19:46
+
+1. Overview
+This report analyzes model probability outputs and threshold behavior. It does not train models and does not modify production thresholds.
+
+2. Input Files
+- reports/baselines/validation_predictions.csv
+- reports/baselines/test_predictions.csv
+- reports/sequences/validation_predictions.csv
+- reports/sequences/test_predictions.csv
+- reports/sequences/tcn_validation_predictions.csv
+- reports/sequences/tcn_test_predictions.csv
+- reports/realtime_simulation/realtime_predictions.csv
+
+Input warnings:
+- None
+
+3. Probability Diagnostics
+- realtime_simulation / causal_tcn: min=0.4398, max=0.5473, mean=0.4914, std=0.0230, range=0.1075, separation=0.0001 narrow_range=True
+- test / causal_tcn: min=0.4495, max=0.5128, mean=0.4853, std=0.0186, range=0.0634, separation=0.0007 narrow_range=True
+- test / gru: min=0.4924, max=0.5425, mean=0.5158, std=0.0124, range=0.0501, separation=-0.0028 narrow_range=True
+- test / logistic_regression: min=0.0628, max=0.9907, mean=0.6202, std=0.3272, range=0.9279, separation=0.0569
+- test / lstm: min=0.4499, max=0.4708, mean=0.4613, std=0.0054, range=0.0209, separation=0.0027 narrow_range=True
+- test / random_forest: min=0.3350, max=0.7300, mean=0.5652, std=0.1149, range=0.3950, separation=0.0304
+- validation / causal_tcn: min=0.4635, max=0.4969, mean=0.4811, std=0.0106, range=0.0334, separation=-0.0049 narrow_range=True
+- validation / gru: min=0.4991, max=0.5318, mean=0.5171, std=0.0113, range=0.0327, separation=0.0068 narrow_range=True
+- validation / logistic_regression: min=0.1982, max=0.9662, mean=0.6265, std=0.2741, range=0.7680, separation=-0.3933
+- validation / lstm: min=0.4494, max=0.4768, mean=0.4623, std=0.0080, range=0.0273, separation=0.0026 narrow_range=True
+- validation / random_forest: min=0.4400, max=0.7950, mean=0.5956, std=0.1167, range=0.3550, separation=-0.1038
+The Causal TCN real-time simulation produced a narrow probability range, causing all predictions to fall into the medium risk band under the default 0.40/0.70 thresholds.
+
+4. Default Risk Band Analysis
+- realtime_simulation / causal_tcn: low=0, medium=209, high=0, all_medium=True
+- test / causal_tcn: low=0, medium=24, high=0, all_medium=True
+- test / gru: low=0, medium=24, high=0, all_medium=True
+- test / logistic_regression: low=7, medium=5, high=12, all_medium=False
+- test / lstm: low=0, medium=24, high=0, all_medium=True
+- test / random_forest: low=2, medium=18, high=4, all_medium=False
+- validation / causal_tcn: low=0, medium=8, high=0, all_medium=True
+- validation / gru: low=0, medium=8, high=0, all_medium=True
+- validation / logistic_regression: low=3, medium=1, high=4, all_medium=False
+- validation / lstm: low=0, medium=8, high=0, all_medium=True
+- validation / random_forest: low=0, medium=7, high=1, all_medium=False
+
+5. Threshold Sweep
+Thresholds from 0.05 to 0.95 were tested in 0.01 increments. Metrics were calculated from existing probabilities only.
+- realtime_simulation / causal_tcn / best_f1_threshold: threshold=0.0500, F1=0.6772, FPR=1.0000, FNR=0.0000
+- test / causal_tcn / best_f1_threshold: threshold=0.4500, F1=0.6857, FPR=0.9167, FNR=0.0000
+- test / gru / best_f1_threshold: threshold=0.0500, F1=0.6667, FPR=1.0000, FNR=0.0000
+- test / logistic_regression / best_f1_threshold: threshold=0.0500, F1=0.6667, FPR=1.0000, FNR=0.0000
+- test / lstm / best_f1_threshold: threshold=0.4500, F1=0.6857, FPR=0.9167, FNR=0.0000
+- test / random_forest / best_f1_threshold: threshold=0.4300, F1=0.7273, FPR=0.7500, FNR=0.0000
+- validation / causal_tcn / best_f1_threshold: threshold=0.0500, F1=0.6667, FPR=1.0000, FNR=0.0000
+- validation / gru / best_f1_threshold: threshold=0.5200, F1=0.7500, FPR=0.2500, FNR=0.2500
+- validation / logistic_regression / best_f1_threshold: threshold=0.0500, F1=0.6667, FPR=1.0000, FNR=0.0000
+- validation / lstm / best_f1_threshold: threshold=0.4500, F1=0.7273, FPR=0.7500, FNR=0.0000
+- validation / random_forest / best_f1_threshold: threshold=0.4500, F1=0.7273, FPR=0.7500, FNR=0.0000
+
+6. Selected Preliminary Thresholds
+- realtime_simulation / causal_tcn / best_balanced_accuracy_threshold: threshold=0.5100, F1=0.3484, FPR=0.2059, FNR=0.7477
+- realtime_simulation / causal_tcn / best_f1_threshold: threshold=0.0500, F1=0.6772, FPR=1.0000, FNR=0.0000
+- realtime_simulation / causal_tcn / conservative_threshold: threshold=0.5100, F1=0.3484, FPR=0.2059, FNR=0.7477
+- test / causal_tcn / best_balanced_accuracy_threshold: threshold=0.4500, F1=0.6857, FPR=0.9167, FNR=0.0000
+- test / causal_tcn / best_f1_threshold: threshold=0.4500, F1=0.6857, FPR=0.9167, FNR=0.0000
+- test / causal_tcn / conservative_threshold: threshold=0.5100, F1=0.1429, FPR=0.0833, FNR=0.9167
+- test / gru / best_balanced_accuracy_threshold: threshold=0.5400, F1=0.1538, FPR=0.0000, FNR=0.9167
+- test / gru / best_f1_threshold: threshold=0.0500, F1=0.6667, FPR=1.0000, FNR=0.0000
+- test / gru / conservative_threshold: threshold=0.5400, F1=0.1538, FPR=0.0000, FNR=0.9167
+- test / logistic_regression / best_balanced_accuracy_threshold: threshold=0.8800, F1=0.6000, FPR=0.1667, FNR=0.5000
+- test / logistic_regression / best_f1_threshold: threshold=0.0500, F1=0.6667, FPR=1.0000, FNR=0.0000
+- test / logistic_regression / conservative_threshold: threshold=0.8500, F1=0.6364, FPR=0.2500, FNR=0.4167
+- test / lstm / best_balanced_accuracy_threshold: threshold=0.4600, F1=0.6400, FPR=0.4167, FNR=0.3333
+- test / lstm / best_f1_threshold: threshold=0.4500, F1=0.6857, FPR=0.9167, FNR=0.0000
+- test / lstm / conservative_threshold: threshold=0.4800, F1=0.0000, FPR=0.0000, FNR=1.0000
+- test / random_forest / best_balanced_accuracy_threshold: threshold=0.5000, F1=0.6667, FPR=0.5000, FNR=0.2500
+- test / random_forest / best_f1_threshold: threshold=0.4300, F1=0.7273, FPR=0.7500, FNR=0.0000
+- test / random_forest / conservative_threshold: threshold=0.7000, F1=0.3750, FPR=0.0833, FNR=0.7500
+- validation / causal_tcn / best_balanced_accuracy_threshold: threshold=0.5000, F1=0.0000, FPR=0.0000, FNR=1.0000
+- validation / causal_tcn / best_f1_threshold: threshold=0.0500, F1=0.6667, FPR=1.0000, FNR=0.0000
+- validation / causal_tcn / conservative_threshold: threshold=0.5000, F1=0.0000, FPR=0.0000, FNR=1.0000
+- validation / gru / best_balanced_accuracy_threshold: threshold=0.5200, F1=0.7500, FPR=0.2500, FNR=0.2500
+- validation / gru / best_f1_threshold: threshold=0.5200, F1=0.7500, FPR=0.2500, FNR=0.2500
+- validation / gru / conservative_threshold: threshold=0.5200, F1=0.7500, FPR=0.2500, FNR=0.2500
+- validation / logistic_regression / best_balanced_accuracy_threshold: threshold=0.0500, F1=0.6667, FPR=1.0000, FNR=0.0000
+- validation / logistic_regression / best_f1_threshold: threshold=0.0500, F1=0.6667, FPR=1.0000, FNR=0.0000
+- validation / logistic_regression / conservative_threshold: threshold=0.9000, F1=0.0000, FPR=0.2500, FNR=1.0000
+- validation / lstm / best_balanced_accuracy_threshold: threshold=0.4500, F1=0.7273, FPR=0.7500, FNR=0.0000
+- validation / lstm / best_f1_threshold: threshold=0.4500, F1=0.7273, FPR=0.7500, FNR=0.0000
+- validation / lstm / conservative_threshold: threshold=0.4700, F1=0.3333, FPR=0.2500, FNR=0.7500
+- validation / random_forest / best_balanced_accuracy_threshold: threshold=0.4500, F1=0.7273, FPR=0.7500, FNR=0.0000
+- validation / random_forest / best_f1_threshold: threshold=0.4500, F1=0.7273, FPR=0.7500, FNR=0.0000
+- validation / random_forest / conservative_threshold: threshold=0.8000, F1=0.0000, FPR=0.0000, FNR=1.0000
+
+7. Reliability Warning
+Current thresholds are preliminary because dataset size is small and participant count is low. Thresholds should be recalibrated after collecting more participants.
+
+8. Ethical Note
+In deception-risk estimation, false positives are ethically sensitive because truthful responses may be incorrectly flagged as deceptive. Therefore, conservative thresholds may be preferred in high-stakes scenarios.
+
+9. Recommendations
+- Collect more participants.
+- Use the validation split for threshold selection, not the test split.
+- Keep the test split for final evaluation.
+- Recalibrate thresholds after retraining.
+- Avoid applying quantile thresholds as final production rules.
+- Compare random_forest and GRU for the next simulation.
+- Do not select LSTM until collapse is fixed.
+- Do not use Causal TCN thresholds seriously until its probability range improves.
+
+Risk Band Candidates
+- realtime_simulation / causal_tcn: low_candidate=0.4789, high_candidate=0.5009
+- test / causal_tcn: low_candidate=0.4789, high_candidate=0.4956
+- test / gru: low_candidate=0.5113, high_candidate=0.5211
+- test / logistic_regression: low_candidate=0.5584, high_candidate=0.8766
+- test / lstm: low_candidate=0.4592, high_candidate=0.4642
+- test / random_forest: low_candidate=0.4889, high_candidate=0.6359
+- validation / causal_tcn: low_candidate=0.4798, high_candidate=0.4869
+- validation / gru: low_candidate=0.5118, high_candidate=0.5260
+- validation / logistic_regression: low_candidate=0.4722, high_candidate=0.8104
+- validation / lstm: low_candidate=0.4589, high_candidate=0.4625
+- validation / random_forest: low_candidate=0.5112, high_candidate=0.6681

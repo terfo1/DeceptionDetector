@@ -1,12 +1,12 @@
 Real-Time Simulation Report
-Generated: 2026-06-01T12:06:45
+Generated: 2026-06-01T12:33:24
 
 1. Overview
 This report describes simulated online inference using recorded gaze samples replayed trial-by-trial.
 The simulation uses a rolling causal buffer and does not train or modify any model.
 
 2. Model Used
-- model_type: causal_tcn
+- model_type: random_forest
 
 3. Simulation Settings
 - window_size_seconds: 3.0
@@ -21,71 +21,71 @@ The simulation uses a rolling causal buffer and does not train or modify any mod
 - requested trial IDs: T001, T002, T003, T004, T005, T006, T007, T008, T009, T010, T011, T012, T013, T014, T015, T016, T017, T018, T019, T020, T021, T022, T023, T024, T025, T026, T027, T028, T029, T030, T031, T032, T033, T034, T035, T036, T037, T038, T039, T040, T041, T042, T043, T044, T045, T046, T047, T048
 - prediction updates: 209
 - label distribution: {0: 24, 1: 24}
-- model type: causal_tcn
+- model type: random_forest
 
 5. Latency Summary
-- mean latency ms: 22.3650
-- median latency ms: 20.6050
-- max latency ms: 80.4723
-- min latency ms: 7.0964
+- mean latency ms: 51.0469
+- median latency ms: 50.9721
+- max latency ms: 74.4069
+- min latency ms: 34.9478
 
 6. Risk Score Summary
-- mean probability: 0.4914
-- max probability: 0.5473
-- low predictions: 0
-- medium predictions: 209
-- high predictions: 0
+- mean probability: 0.5123
+- max probability: 0.8050
+- low predictions: 16
+- medium predictions: 186
+- high predictions: 7
 - insufficient_data predictions: 0
 
 7. Trial-Level Summary
-- T001: final_risk=medium, mean_probability=0.5063, max_probability=0.5451, updates=3
-- T002: final_risk=medium, mean_probability=0.5010, max_probability=0.5134, updates=5
-- T003: final_risk=medium, mean_probability=0.4958, max_probability=0.5400, updates=3
-- T004: final_risk=medium, mean_probability=0.4966, max_probability=0.5350, updates=4
-- T005: final_risk=medium, mean_probability=0.4822, max_probability=0.5159, updates=4
-- T006: final_risk=medium, mean_probability=0.4896, max_probability=0.5119, updates=5
-- T007: final_risk=medium, mean_probability=0.4935, max_probability=0.5156, updates=4
-- T008: final_risk=medium, mean_probability=0.4714, max_probability=0.4902, updates=3
-- T009: final_risk=medium, mean_probability=0.5153, max_probability=0.5424, updates=2
-- T010: final_risk=medium, mean_probability=0.4955, max_probability=0.5251, updates=2
-- T011: final_risk=medium, mean_probability=0.5046, max_probability=0.5227, updates=3
-- T012: final_risk=medium, mean_probability=0.5028, max_probability=0.5210, updates=2
-- T013: final_risk=medium, mean_probability=0.5002, max_probability=0.5314, updates=3
-- T014: final_risk=medium, mean_probability=0.4926, max_probability=0.5253, updates=4
-- T015: final_risk=medium, mean_probability=0.4913, max_probability=0.5012, updates=2
-- T016: final_risk=medium, mean_probability=0.5040, max_probability=0.5396, updates=5
-- T017: final_risk=medium, mean_probability=0.4792, max_probability=0.4911, updates=6
-- T018: final_risk=medium, mean_probability=0.4983, max_probability=0.5147, updates=5
-- T019: final_risk=medium, mean_probability=0.4855, max_probability=0.5262, updates=4
-- T020: final_risk=medium, mean_probability=0.4896, max_probability=0.5288, updates=4
-- T021: final_risk=medium, mean_probability=0.4881, max_probability=0.5038, updates=4
-- T022: final_risk=medium, mean_probability=0.4877, max_probability=0.5135, updates=8
-- T023: final_risk=medium, mean_probability=0.4988, max_probability=0.5239, updates=4
-- T024: final_risk=medium, mean_probability=0.4743, max_probability=0.4999, updates=5
-- T025: final_risk=medium, mean_probability=0.4921, max_probability=0.5279, updates=5
-- T026: final_risk=medium, mean_probability=0.5111, max_probability=0.5473, updates=5
-- T027: final_risk=medium, mean_probability=0.4952, max_probability=0.5416, updates=4
-- T028: final_risk=medium, mean_probability=0.4819, max_probability=0.5154, updates=4
-- T029: final_risk=medium, mean_probability=0.4965, max_probability=0.5013, updates=4
-- T030: final_risk=medium, mean_probability=0.4877, max_probability=0.5110, updates=3
-- T031: final_risk=medium, mean_probability=0.4941, max_probability=0.5146, updates=4
-- T032: final_risk=medium, mean_probability=0.4918, max_probability=0.5206, updates=4
-- T033: final_risk=medium, mean_probability=0.4915, max_probability=0.5266, updates=5
-- T034: final_risk=medium, mean_probability=0.4924, max_probability=0.5235, updates=3
-- T035: final_risk=medium, mean_probability=0.4830, max_probability=0.5017, updates=5
-- T036: final_risk=medium, mean_probability=0.4791, max_probability=0.5160, updates=6
-- T037: final_risk=medium, mean_probability=0.4952, max_probability=0.5227, updates=3
-- T038: final_risk=medium, mean_probability=0.4940, max_probability=0.5194, updates=3
-- T039: final_risk=medium, mean_probability=0.5044, max_probability=0.5371, updates=3
-- T040: final_risk=medium, mean_probability=0.5110, max_probability=0.5346, updates=3
-- T041: final_risk=medium, mean_probability=0.4909, max_probability=0.5130, updates=5
-- T042: final_risk=medium, mean_probability=0.4871, max_probability=0.5407, updates=9
-- T043: final_risk=medium, mean_probability=0.4928, max_probability=0.5274, updates=10
-- T044: final_risk=medium, mean_probability=0.4831, max_probability=0.5135, updates=6
-- T045: final_risk=medium, mean_probability=0.4892, max_probability=0.5206, updates=5
-- T046: final_risk=medium, mean_probability=0.4825, max_probability=0.5248, updates=9
-- T047: final_risk=medium, mean_probability=0.4809, max_probability=0.5157, updates=4
-- T048: final_risk=medium, mean_probability=0.4989, max_probability=0.5191, updates=3
+- T001: final_risk=medium, mean_probability=0.4083, max_probability=0.4750, updates=3
+- T002: final_risk=low, mean_probability=0.3700, max_probability=0.4550, updates=5
+- T003: final_risk=medium, mean_probability=0.4017, max_probability=0.5100, updates=3
+- T004: final_risk=medium, mean_probability=0.5375, max_probability=0.6100, updates=4
+- T005: final_risk=high, mean_probability=0.6475, max_probability=0.7950, updates=4
+- T006: final_risk=medium, mean_probability=0.5710, max_probability=0.7000, updates=5
+- T007: final_risk=medium, mean_probability=0.5225, max_probability=0.6150, updates=4
+- T008: final_risk=medium, mean_probability=0.5600, max_probability=0.6000, updates=3
+- T009: final_risk=medium, mean_probability=0.4350, max_probability=0.4700, updates=2
+- T010: final_risk=low, mean_probability=0.3925, max_probability=0.4050, updates=2
+- T011: final_risk=medium, mean_probability=0.4667, max_probability=0.4900, updates=3
+- T012: final_risk=medium, mean_probability=0.5100, max_probability=0.6150, updates=2
+- T013: final_risk=medium, mean_probability=0.4417, max_probability=0.4600, updates=3
+- T014: final_risk=medium, mean_probability=0.5663, max_probability=0.6600, updates=4
+- T015: final_risk=medium, mean_probability=0.4900, max_probability=0.5150, updates=2
+- T016: final_risk=low, mean_probability=0.3860, max_probability=0.5100, updates=5
+- T017: final_risk=medium, mean_probability=0.6642, max_probability=0.7500, updates=6
+- T018: final_risk=medium, mean_probability=0.5250, max_probability=0.5800, updates=5
+- T019: final_risk=medium, mean_probability=0.5225, max_probability=0.6350, updates=4
+- T020: final_risk=medium, mean_probability=0.4600, max_probability=0.6100, updates=4
+- T021: final_risk=medium, mean_probability=0.6312, max_probability=0.7200, updates=4
+- T022: final_risk=medium, mean_probability=0.4881, max_probability=0.5550, updates=8
+- T023: final_risk=medium, mean_probability=0.4487, max_probability=0.5600, updates=4
+- T024: final_risk=medium, mean_probability=0.5230, max_probability=0.6450, updates=5
+- T025: final_risk=high, mean_probability=0.6340, max_probability=0.7700, updates=5
+- T026: final_risk=medium, mean_probability=0.4870, max_probability=0.5850, updates=5
+- T027: final_risk=medium, mean_probability=0.5950, max_probability=0.7650, updates=4
+- T028: final_risk=medium, mean_probability=0.5587, max_probability=0.6800, updates=4
+- T029: final_risk=medium, mean_probability=0.4200, max_probability=0.4750, updates=4
+- T030: final_risk=medium, mean_probability=0.5133, max_probability=0.5550, updates=3
+- T031: final_risk=medium, mean_probability=0.4312, max_probability=0.4900, updates=4
+- T032: final_risk=medium, mean_probability=0.4700, max_probability=0.5150, updates=4
+- T033: final_risk=low, mean_probability=0.3230, max_probability=0.4100, updates=5
+- T034: final_risk=medium, mean_probability=0.6450, max_probability=0.7700, updates=3
+- T035: final_risk=high, mean_probability=0.6570, max_probability=0.8050, updates=5
+- T036: final_risk=high, mean_probability=0.6283, max_probability=0.7800, updates=6
+- T037: final_risk=medium, mean_probability=0.4467, max_probability=0.4650, updates=3
+- T038: final_risk=low, mean_probability=0.3783, max_probability=0.4850, updates=3
+- T039: final_risk=medium, mean_probability=0.5067, max_probability=0.6500, updates=3
+- T040: final_risk=medium, mean_probability=0.4700, max_probability=0.5550, updates=3
+- T041: final_risk=medium, mean_probability=0.5080, max_probability=0.5550, updates=5
+- T042: final_risk=medium, mean_probability=0.5200, max_probability=0.6050, updates=9
+- T043: final_risk=medium, mean_probability=0.4885, max_probability=0.6300, updates=10
+- T044: final_risk=medium, mean_probability=0.5542, max_probability=0.6100, updates=6
+- T045: final_risk=medium, mean_probability=0.4990, max_probability=0.6900, updates=5
+- T046: final_risk=medium, mean_probability=0.4961, max_probability=0.5350, updates=9
+- T047: final_risk=high, mean_probability=0.6688, max_probability=0.8050, updates=4
+- T048: final_risk=medium, mean_probability=0.4483, max_probability=0.5150, updates=3
 
 8. Limitations
 - This is a replay simulation, not a live eye-tracker deployment.

@@ -257,6 +257,53 @@ reports/realtime_simulation/realtime_simulation_report.txt
 reports/realtime_simulation/realtime_simulation_summary.md
 ```
 
+## Step 13: Threshold Calibration and Probability Diagnostics
+
+This step analyzes model probabilities, detects cases where all predictions fall into one risk band, and sweeps thresholds from 0.05 to 0.95. It selects preliminary thresholds by F1 and conservative false-positive behavior, but it does not automatically modify runtime thresholds.
+
+Thresholds are preliminary until more participants are collected.
+
+Generate the threshold calibration report:
+
+```bash
+python -m src.analysis.generate_threshold_report
+```
+
+Calibration outputs are saved to:
+
+```text
+reports/threshold_calibration/threshold_sweep.csv
+reports/threshold_calibration/model_probability_diagnostics.csv
+reports/threshold_calibration/selected_thresholds.json
+reports/threshold_calibration/threshold_calibration_report.txt
+reports/threshold_calibration/threshold_calibration_summary.md
+reports/threshold_calibration/recommendations.md
+```
+
+## Step 14: Model Selection for Live Prototype
+
+Random Forest is selected as the current primary model for the live prototype. GRU is kept as the fallback neural model. LSTM is disabled because prediction collapse was detected. Causal TCN remains experimental because it is architecturally useful for future causal inference but currently has a narrow probability range.
+
+This step does not retrain models and does not create a production API yet.
+
+Validate selected model:
+
+```bash
+python -m src.realtime.validate_selected_model
+```
+
+Run selected model simulation:
+
+```bash
+python -m src.realtime.run_selected_model_simulation
+```
+
+Model selection outputs are saved to:
+
+```text
+reports/model_selection/
+```
+
 ## Final Report Generation
 
 Generate the final Word technical/research report:

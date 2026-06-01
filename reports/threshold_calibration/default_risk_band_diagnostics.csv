@@ -1,0 +1,12 @@
+split,model_name,low_count,medium_count,high_count,low_ratio,medium_ratio,high_ratio,all_medium_detected
+realtime_simulation,causal_tcn,0,209,0,0.0,1.0,0.0,True
+test,causal_tcn,0,24,0,0.0,1.0,0.0,True
+test,gru,0,24,0,0.0,1.0,0.0,True
+test,logistic_regression,7,5,12,0.2916666666666667,0.20833333333333334,0.5,False
+test,lstm,0,24,0,0.0,1.0,0.0,True
+test,random_forest,2,18,4,0.08333333333333333,0.75,0.16666666666666666,False
+validation,causal_tcn,0,8,0,0.0,1.0,0.0,True
+validation,gru,0,8,0,0.0,1.0,0.0,True
+validation,logistic_regression,3,1,4,0.375,0.125,0.5,False
+validation,lstm,0,8,0,0.0,1.0,0.0,True
+validation,random_forest,0,7,1,0.0,0.875,0.125,False

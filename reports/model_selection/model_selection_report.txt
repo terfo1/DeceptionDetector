@@ -1,0 +1,46 @@
+Model Selection Report for Live Prototype
+Generated: 2026-06-01T12:32:55
+
+1. Overview
+This report selects the current model for the live prototype based on existing diagnostics. No models are trained in this step.
+
+2. Selected Model
+selected_model = random_forest
+Random Forest is selected because it currently has the strongest overall prototype performance and wider probability distribution.
+
+3. Fallback Model
+fallback_model = gru
+GRU is retained as the strongest current neural sequence model.
+
+4. Disabled Models
+lstm is disabled due to prediction collapse.
+
+5. Experimental Models
+causal_tcn is experimental due to narrow probability range and all-medium behavior, while remaining useful for future causal realtime inference.
+
+6. Registry Status
+- logistic_regression: status=available, role=candidate, files_ok=True, missing=none
+- random_forest: status=selected, role=primary, files_ok=True, missing=none
+- gru: status=fallback, role=secondary, files_ok=True, missing=none
+- lstm: status=disabled, role=disabled, files_ok=True, missing=none
+- causal_tcn: status=experimental, role=experimental, files_ok=True, missing=none
+
+7. Threshold Policy
+- Runtime thresholds remain default 0.40/0.70 for risk bands.
+- Calibration outputs are preliminary.
+- No threshold is final until more participants are collected.
+- Binary threshold for selected model remains 0.50 for prototype.
+
+8. Scientific/Ethical Warning
+- This is a controlled deception-risk prototype.
+- It is not a universal lie detector.
+- False positives are ethically sensitive.
+- Outputs should be treated as risk indicators only.
+
+9. Next Step
+- Run selected model simulation.
+- Then build a FastAPI/WebSocket prototype.
+- Collect more participants before strong claims.
+
+selected_model_files_ok: True
+fallback_model_files_ok: True

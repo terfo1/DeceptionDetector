@@ -1,0 +1,10 @@
+Selected Model Simulation Summary
+selected_model: random_forest
+trials_simulated: 48
+prediction_updates: 209
+mean_latency_ms: 51.0469
+max_latency_ms: 74.4069
+risk_category_counts: {'high': 7, 'low': 16, 'medium': 186}
+mean_probability: 0.5123
+
+This is replay simulation, not live deployment.

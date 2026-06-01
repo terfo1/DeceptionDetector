@@ -35,3 +35,36 @@ Outputs:
 - `reports/realtime_simulation/realtime_simulation_summary.md`
 
 This is not live deployment yet. It is an offline replay simulation using recorded samples.
+
+## Step 14: Model Selection for Live Prototype
+
+This step selects the current model for the live prototype based on previous diagnostics.
+
+Current selection:
+
+- primary model: `random_forest`
+- fallback model: `gru`
+- disabled model: `lstm`
+- experimental model: `causal_tcn`
+
+Validate selected model:
+
+```bash
+python -m src.realtime.validate_selected_model
+```
+
+Run selected model simulation:
+
+```bash
+python -m src.realtime.run_selected_model_simulation
+```
+
+Outputs:
+
+- `reports/model_selection/selected_model_config.json`
+- `reports/model_selection/model_registry_status.csv`
+- `reports/model_selection/model_selection_report.txt`
+- `reports/model_selection/model_selection_summary.md`
+- `reports/model_selection/selected_model_realtime_predictions.csv`
+- `reports/model_selection/selected_model_trial_summary.csv`
+- `reports/model_selection/selected_model_simulation_summary.txt`

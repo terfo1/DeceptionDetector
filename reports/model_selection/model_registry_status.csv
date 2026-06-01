@@ -1,0 +1,6 @@
+model_name,model_type,status,role,model_path,all_files_exist,missing_files,reason
+logistic_regression,baseline,available,candidate,models/baselines/logistic_regression.joblib,True,,Baseline model with wide probability distribution but not selected.
+random_forest,baseline,selected,primary,models/baselines/random_forest.joblib,True,,Current best prototype model by available model comparison results.
+gru,sequence,fallback,secondary,models/sequences/gru_model.pt,True,,Best current neural sequence model but probability range is narrow.
+lstm,sequence,disabled,disabled,models/sequences/lstm_model.pt,True,,Disabled because prediction collapse was detected.
+causal_tcn,sequence,experimental,experimental,models/sequences/tcn_model.pt,True,,"Architecturally suitable for future real-time inference, but current probability range is narrow."
