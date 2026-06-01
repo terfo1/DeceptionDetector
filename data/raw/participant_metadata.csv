@@ -1,0 +1,2 @@
+participant_id,age_group,gender_optional,vision_status,glasses_or_lenses,dominant_eye_optional,notes,consent_confirmed,created_at
+P010,18_24,prefer_not_to_say,normal,none,prefer_not_to_say,Алишер на работе,True,2026-06-01T15:50:51

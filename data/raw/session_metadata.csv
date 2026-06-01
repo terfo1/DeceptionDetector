@@ -1,0 +1,2 @@
+session_id,participant_id,experiment_version,protocol_version,operator_notes,calibration_status,baseline_duration_seconds,device,screen_width,screen_height,sampling_rate,created_at
+S008,P010,prototype_step_19,controlled_statement_task_v1,Алишер на работе,mock_passed,5,MockEyeTracker,1536,864,60,2026-06-01T15:51:02

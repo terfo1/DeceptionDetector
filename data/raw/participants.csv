@@ -2,3 +2,5 @@ participant_id,notes
 P001,First participant
 P002,Second participant
 P003,Third participant
+P004,Existing session reference; appended non-destructively for referential integrity.
+P010,Алишер на работе

@@ -1,0 +1,38 @@
+Data Collection Session Report
+Generated: 2026-06-01T15:52:12
+
+1. Overview
+- session_id: S008
+- participant_id: P010
+- date/time: 2026-06-01
+- device: MockEyeTracker
+- sampling_rate: 60
+- calibration_quality: mock_good
+
+2. Trial Summary
+- total trials: 8
+- truth trials: 4
+- lie trials: 4
+- completed trials: 8
+- timeout answers: 0
+
+3. Gaze Sample Summary
+- total gaze samples: 980
+- valid samples: 922
+- invalid samples: 58
+- valid ratio: 0.9408
+- average samples per trial: 122.5
+
+4. Quality Assessment
+- quality_flag: good
+Warnings:
+- none
+
+5. Scientific/Ethical Notes
+- Participant data is anonymous.
+- The system estimates deception risk under controlled conditions.
+- It is not a universal lie detector.
+- More participants are required for reliable conclusions.
+
+6. Recommended Action
+- keep session

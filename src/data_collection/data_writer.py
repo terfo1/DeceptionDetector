@@ -42,6 +42,20 @@ class CsvDataWriter:
         "saccade",
         "validity",
     ]
+    SESSION_METADATA_HEADER = [
+        "session_id",
+        "participant_id",
+        "experiment_version",
+        "protocol_version",
+        "operator_notes",
+        "calibration_status",
+        "baseline_duration_seconds",
+        "device",
+        "screen_width",
+        "screen_height",
+        "sampling_rate",
+        "created_at",
+    ]
 
     def __init__(self, raw_dir=None):
         if raw_dir is None:
@@ -53,6 +67,7 @@ class CsvDataWriter:
         self.sessions_path = self.raw_dir / "sessions.csv"
         self.trials_path = self.raw_dir / "trials.csv"
         self.gaze_samples_path = self.raw_dir / "gaze_samples.csv"
+        self.session_metadata_path = self.raw_dir / "session_metadata.csv"
 
     def ensure_raw_files(self):
         self.raw_dir.mkdir(parents=True, exist_ok=True)
@@ -60,6 +75,10 @@ class CsvDataWriter:
         self._ensure_file(self.sessions_path, self.SESSIONS_HEADER)
         self._ensure_file(self.trials_path, self.TRIALS_HEADER)
         self._ensure_file(self.gaze_samples_path, self.GAZE_SAMPLES_HEADER)
+        self._ensure_file(self.session_metadata_path, self.SESSION_METADATA_HEADER)
+        from .participant_metadata import ensure_participant_metadata_file
+
+        ensure_participant_metadata_file(self.raw_dir / "participant_metadata.csv")
 
     def append_participant(self, participant_id, notes):
         self._append_row(
@@ -131,6 +150,50 @@ class CsvDataWriter:
             writer = csv.DictWriter(file, fieldnames=self.GAZE_SAMPLES_HEADER)
             for sample in samples:
                 writer.writerow(sample)
+
+    def append_participant_metadata(self, row):
+        from .participant_metadata import append_participant_metadata
+
+        return append_participant_metadata(row, self.raw_dir / "participant_metadata.csv")
+
+    def append_session_metadata(
+        self,
+        session_id,
+        participant_id,
+        experiment_version,
+        protocol_version,
+        operator_notes,
+        calibration_status,
+        baseline_duration_seconds,
+        device,
+        screen_width,
+        screen_height,
+        sampling_rate,
+        created_at,
+    ):
+        self._append_row(
+            self.session_metadata_path,
+            self.SESSION_METADATA_HEADER,
+            {
+                "session_id": session_id,
+                "participant_id": participant_id,
+                "experiment_version": experiment_version,
+                "protocol_version": protocol_version,
+                "operator_notes": operator_notes,
+                "calibration_status": calibration_status,
+                "baseline_duration_seconds": baseline_duration_seconds,
+                "device": device,
+                "screen_width": screen_width,
+                "screen_height": screen_height,
+                "sampling_rate": sampling_rate,
+                "created_at": created_at,
+            },
+        )
+
+    def append_session_quality(self, row):
+        from .session_quality import append_session_quality
+
+        append_session_quality(row, self.raw_dir / "session_quality.csv")
 
     def get_next_session_id(self):
         return self._next_prefixed_id(self.sessions_path, "session_id", "S")

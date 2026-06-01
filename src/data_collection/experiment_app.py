@@ -3,12 +3,14 @@
 import random
 import time
 import tkinter as tk
-from datetime import date
+from datetime import date, datetime
 from tkinter import messagebox
 
 from .data_writer import CsvDataWriter
 from .mock_eye_tracker import MockEyeTracker
+from .participant_metadata import create_participant_metadata_row
 from .question_bank import get_statement_level_trials
+from .session_report import generate_latest_session_report
 
 
 class ExperimentApp:
@@ -32,6 +34,11 @@ class ExperimentApp:
         self.participant_id = None
         self.notes = ""
         self.session_id = None
+        self.age_group = "prefer_not_to_say"
+        self.vision_status = "prefer_not_to_say"
+        self.glasses_or_lenses = "prefer_not_to_say"
+        self.calibration_status = "mock_passed"
+        self.session_metadata_saved = False
         self.session_start_time = None
         self.trials = []
         self.current_trial_index = 0
@@ -61,9 +68,33 @@ class ExperimentApp:
             size=18,
             pady=(0, 40),
         )
-        self._button("Start", self.show_participant_screen).pack(pady=20)
+        self._button("Start", self.show_consent_screen).pack(pady=20)
+
+    def show_consent_screen(self):
+        self._clear()
+        self._center_label("Consent and ethics note", size=24, pady=(60, 20))
+        self._center_label(
+            "This experiment collects anonymous eye-tracking data for a controlled "
+            "deception-risk research prototype. The system does not determine whether "
+            "a person is lying with certainty and must not be used as an autonomous lie detector.",
+            size=16,
+            pady=(0, 30),
+        )
+        self.consent_var = tk.BooleanVar(value=False)
+        tk.Checkbutton(
+            self.root,
+            text="I understand and agree to continue.",
+            variable=self.consent_var,
+            font=("Arial", 16),
+            bg="white",
+        ).pack(pady=10)
+        self._button("Continue", self.show_participant_screen).pack(pady=20)
 
     def show_participant_screen(self):
+        if not getattr(self, "consent_var", tk.BooleanVar(value=False)).get():
+            messagebox.showwarning("Consent required", "Please confirm consent before continuing.")
+            return
+
         self._clear()
         self._center_label("Participant setup", size=24, pady=(70, 30))
 
@@ -83,6 +114,49 @@ class ExperimentApp:
         self.notes_entry = tk.Entry(form, font=("Arial", 16), width=24)
         self.notes_entry.grid(row=1, column=1, padx=10, pady=10)
 
+        self.age_group_var = tk.StringVar(value="prefer_not_to_say")
+        self.vision_status_var = tk.StringVar(value="prefer_not_to_say")
+        self.glasses_var = tk.StringVar(value="prefer_not_to_say")
+
+        tk.Label(form, text="Age group", font=("Arial", 16), bg="white").grid(
+            row=2, column=0, sticky="e", padx=10, pady=10
+        )
+        tk.OptionMenu(
+            form,
+            self.age_group_var,
+            "under_18",
+            "18_24",
+            "25_34",
+            "35_44",
+            "45_plus",
+            "prefer_not_to_say",
+        ).grid(row=2, column=1, sticky="w", padx=10, pady=10)
+
+        tk.Label(form, text="Vision status", font=("Arial", 16), bg="white").grid(
+            row=3, column=0, sticky="e", padx=10, pady=10
+        )
+        tk.OptionMenu(
+            form,
+            self.vision_status_var,
+            "normal",
+            "corrected_to_normal",
+            "impaired",
+            "prefer_not_to_say",
+        ).grid(row=3, column=1, sticky="w", padx=10, pady=10)
+
+        tk.Label(form, text="Glasses/lenses", font=("Arial", 16), bg="white").grid(
+            row=4, column=0, sticky="e", padx=10, pady=10
+        )
+        tk.OptionMenu(
+            form,
+            self.glasses_var,
+            "none",
+            "glasses",
+            "contact_lenses",
+            "both",
+            "prefer_not_to_say",
+        ).grid(row=4, column=1, sticky="w", padx=10, pady=10)
+
         self._button("Continue", self.start_session).pack(pady=30)
 
     def start_session(self):
@@ -95,11 +169,25 @@ class ExperimentApp:
 
         self.participant_id = participant_id
         self.notes = notes
+        self.age_group = self.age_group_var.get()
+        self.vision_status = self.vision_status_var.get()
+        self.glasses_or_lenses = self.glasses_var.get()
         self.session_id = self.writer.get_next_session_id()
         self.session_start_time = time.perf_counter()
 
         try:
             self.writer.append_participant(self.participant_id, self.notes)
+            metadata_row = create_participant_metadata_row(
+                participant_id=self.participant_id,
+                age_group=self.age_group,
+                vision_status=self.vision_status,
+                glasses_or_lenses=self.glasses_or_lenses,
+                notes=self.notes,
+                consent_confirmed=True,
+            )
+            metadata_warnings = self.writer.append_participant_metadata(metadata_row)
+            for warning in metadata_warnings:
+                print(f"Participant metadata warning: {warning}")
             self.writer.append_session(
                 session_id=self.session_id,
                 participant_id=self.participant_id,
@@ -120,13 +208,33 @@ class ExperimentApp:
 
     def show_calibration_screen(self):
         self._clear()
-        self._center_label("Calibration placeholder", size=24, pady=(120, 20))
+        self._center_label("Mock calibration", size=24, pady=(80, 20))
         self._center_label(
-            "Real eye-tracker calibration will be added later.",
+            "Real eye-tracker calibration will be added later. Record the current mock calibration status.",
             size=18,
-            pady=(0, 40),
+            pady=(0, 20),
         )
-        self._button("Continue", self.show_baseline_screen).pack(pady=20)
+        self.calibration_status_var = tk.StringVar(value="mock_passed")
+        tk.OptionMenu(
+            self.root,
+            self.calibration_status_var,
+            "mock_passed",
+            "skipped",
+            "failed",
+        ).pack(pady=10)
+        self._button("Continue", self.handle_calibration_continue).pack(pady=20)
+
+    def handle_calibration_continue(self):
+        self.calibration_status = self.calibration_status_var.get()
+        if self.calibration_status == "failed":
+            continue_anyway = messagebox.askyesno(
+                "Calibration failed",
+                "Calibration is marked failed. Continue with warning?",
+            )
+            if not continue_anyway:
+                return
+        self._save_session_metadata()
+        self.show_baseline_screen()
 
     def show_baseline_screen(self):
         self.baseline_remaining = self.BASELINE_SECONDS
@@ -254,7 +362,20 @@ class ExperimentApp:
     def show_end_screen(self):
         self._clear()
         self._center_label("Experiment completed", size=24, pady=(150, 20))
-        self._center_label("Data saved to data/raw", size=18, pady=(0, 40))
+        report_info = self._generate_session_report()
+        if report_info:
+            quality = report_info["quality"]
+            summary_text = (
+                f"Data saved to data/raw\n"
+                f"Session: {self.session_id}\n"
+                f"Completed trials: {quality['completed_trials']}\n"
+                f"Valid ratio: {quality['valid_ratio']}\n"
+                f"Quality flag: {quality['quality_flag']}\n"
+                f"Report: {report_info['report_path']}"
+            )
+        else:
+            summary_text = "Data saved to data/raw"
+        self._center_label(summary_text, size=16, pady=(0, 40))
         self._button("Close", self.root.destroy).pack(pady=20)
 
         print("Experiment completed")
@@ -262,6 +383,37 @@ class ExperimentApp:
         print(f"session_id: {self.session_id}")
         print(f"trials_completed: {self.completed_trials}")
         print(f"raw_data_path: {self.writer.raw_dir}")
+
+    def _save_session_metadata(self):
+        if self.session_metadata_saved:
+            return
+        try:
+            self.writer.append_session_metadata(
+                session_id=self.session_id,
+                participant_id=self.participant_id,
+                experiment_version="prototype_step_19",
+                protocol_version="controlled_statement_task_v1",
+                operator_notes=self.notes,
+                calibration_status=self.calibration_status,
+                baseline_duration_seconds=self.BASELINE_SECONDS,
+                device="MockEyeTracker",
+                screen_width=self.root.winfo_screenwidth(),
+                screen_height=self.root.winfo_screenheight(),
+                sampling_rate=60,
+                created_at=datetime.now().isoformat(timespec="seconds"),
+            )
+            self.session_metadata_saved = True
+        except OSError as error:
+            messagebox.showwarning("Metadata warning", f"Could not save session metadata:\n{error}")
+
+    def _generate_session_report(self):
+        if not self.session_id:
+            return None
+        try:
+            return generate_latest_session_report(self.session_id)
+        except (OSError, ValueError) as error:
+            messagebox.showwarning("Report warning", f"Could not generate session report:\n{error}")
+            return None
 
     def _session_elapsed(self):
         return time.perf_counter() - self.session_start_time

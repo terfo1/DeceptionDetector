@@ -47,3 +47,11 @@ T045,S007,Are you sitting on a chair?,lie,1,no,2.43,38.40,43.86
 T046,S007,Is this experiment running on a computer?,truth,0,no,4.40,44.91,52.33
 T047,S007,Are you answering this question now?,lie,1,no,1.98,53.45,58.44
 T048,S007,Are you answering this question now?,truth,0,yes,1.03,59.53,63.58
+T049,S008,Is this experiment running on a computer?,truth,0,yes,2.01,17.07,22.09
+T050,S008,Are you answering this question now?,lie,1,no,1.49,23.13,27.64
+T051,S008,Are you answering this question now?,truth,0,yes,2.20,28.69,33.89
+T052,S008,Are you currently looking at a screen?,lie,1,no,2.27,34.94,40.22
+T053,S008,Are you sitting on a chair?,truth,0,yes,1.78,41.28,46.08
+T054,S008,Is this experiment running on a computer?,lie,1,no,2.04,47.14,66.91
+T055,S008,Are you currently looking at a screen?,truth,0,yes,1.85,67.95,72.82
+T056,S008,Are you sitting on a chair?,lie,1,no,2.69,73.86,79.56

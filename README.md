@@ -369,6 +369,46 @@ Or open it through the API static route:
 http://127.0.0.1:8000/static/live_monitor.html
 ```
 
+## Step 18: Gaze Source Adapter Interface
+
+A unified adapter interface was added so future gaze sources can be swapped without changing the live inference API. Mock and recorded CSV adapters are implemented. Webcam and real eye tracker adapters are placeholders for future integration.
+
+Start API:
+
+```bash
+uvicorn src.api.app:app --reload
+```
+
+Stream mock gaze samples:
+
+```bash
+python -m src.gaze_sources.stream_to_api --source mock --duration-seconds 10
+```
+
+Stream recorded CSV samples:
+
+```bash
+python -m src.gaze_sources.stream_to_api --source recorded_csv --max-trials 3
+```
+
+## Step 19: Real Data Collection Workflow
+
+The data collection workflow was improved so the project is ready to collect more participants. Participant metadata is anonymous, the app includes a consent note, calibration status is recorded, session quality reports are generated, and a collection checklist is available.
+
+Generate the data collection checklist:
+
+```bash
+python -m src.data_collection.collection_checklist
+```
+
+Run the experiment app:
+
+```bash
+python -m src.data_collection.experiment_app
+```
+
+New append-only metadata and quality files are saved under `data/raw/`, and session reports are saved under `reports/data_collection/`.
+
 ## Final Report Generation
 
 Generate the final Word technical/research report:

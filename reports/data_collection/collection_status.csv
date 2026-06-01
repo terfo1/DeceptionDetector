@@ -1,0 +1,3 @@
+session_id,participant_id,total_trials,total_gaze_samples,valid_ratio,quality_flag,recommended_action,report_path,created_at
+S007,P004,8,1459,0.9321,warning,review session,reports\data_collection\latest_session_report.txt,2026-06-01T15:47:08
+S008,P010,8,980,0.9408,good,keep session,reports\data_collection\latest_session_report.txt,2026-06-01T15:52:12

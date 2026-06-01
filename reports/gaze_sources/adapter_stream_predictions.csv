@@ -1,0 +1,4 @@
+received_at,source_type,session_id,trial_id,model_type,timestamp,probability,smoothed_probability,risk_category,valid_ratio,sample_count,latency_ms,status
+2026-06-01T15:37:09,recorded_csv,ADAPTER_SESSION_001,T001,random_forest,0.0,0.475,0.475,medium,1.0,1,37.28779999073595,ok
+2026-06-01T15:37:09,recorded_csv,ADAPTER_SESSION_001,T001,random_forest,0.5,0.435,0.45499999999999996,medium,0.9032258064516129,31,52.66169999958947,ok
+2026-06-01T15:37:09,recorded_csv,ADAPTER_SESSION_001,T001,random_forest,1.0,0.315,0.40833333333333327,medium,0.9016393442622951,61,46.908099961001426,ok

@@ -1,0 +1,14 @@
+Adapter Stream Summary
+source_type: recorded_csv
+session_id: ADAPTER_SESSION_001
+websocket_url: ws://127.0.0.1:8000/ws/live
+samples_sent: 88
+predictions_received: 3
+risk_counts: {'medium': 3}
+mean_probability: 0.4083
+max_probability: 0.4750
+mean_latency_ms: 45.6192
+max_latency_ms: 52.6617
+errors: 0
+
+This is an adapter-level streaming test.
