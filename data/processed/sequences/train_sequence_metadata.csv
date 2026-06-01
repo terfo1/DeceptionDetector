@@ -1,0 +1,9 @@
+window_id,participant_id,trial_id,session_id,label,instruction,window_start,window_end,valid_ratio,sample_count,is_usable,original_sequence_length,padded_length,sequence_file
+W000033,P003,T033,S005,0,truth,0.0,2.017,0.9098,122,True,121,180,train_sequences.npz
+W000034,P003,T034,S005,1,lie,0.0,1.4,0.9765,85,True,84,180,train_sequences.npz
+W000035,P003,T035,S005,1,lie,0.0,2.133,0.9302,129,True,128,180,train_sequences.npz
+W000036,P003,T036,S005,1,lie,0.0,2.617,0.981,158,True,157,180,train_sequences.npz
+W000037,P003,T037,S005,1,lie,0.0,1.417,0.9302,86,True,85,180,train_sequences.npz
+W000038,P003,T038,S005,0,truth,0.0,1.283,0.9231,78,True,77,180,train_sequences.npz
+W000039,P003,T039,S005,0,truth,0.0,1.317,0.975,80,True,79,180,train_sequences.npz
+W000040,P003,T040,S005,0,truth,0.0,1.317,0.975,80,True,79,180,train_sequences.npz

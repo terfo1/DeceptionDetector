@@ -121,6 +121,31 @@ models/baselines/
 reports/baselines/
 ```
 
+## Step 8: Neural Sequence Dataset Preparation
+
+Aggregated baseline features are useful for classical ML checks, but they are not enough for future LSTM, GRU, and Causal TCN models. Neural sequence models need fixed-length time-series tensors built from raw gaze samples inside each processed window.
+
+This step creates sequence tensors from the existing subject-independent train/validation/test windows. The split remains subject-independent, and the scaler is fitted only on train sequences to avoid leakage into validation or test data.
+
+No neural network training, real-time inference, API, frontend, or universal lie detector system is implemented in this step. The project remains a controlled experimental pipeline for estimating deception risk from eye-tracking signals.
+
+Build sequence datasets:
+
+```bash
+python -m src.training.build_sequence_dataset
+```
+
+Sequence outputs are saved to:
+
+```text
+data/processed/sequences/train_sequences.npz
+data/processed/sequences/validation_sequences.npz
+data/processed/sequences/test_sequences.npz
+data/processed/sequences/sequence_feature_columns.json
+data/processed/sequences/sequence_scaler.joblib
+data/processed/sequences/sequence_dataset_report.txt
+```
+
 ## Final Report Generation
 
 Generate the final Word technical/research report:

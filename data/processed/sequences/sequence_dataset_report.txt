@@ -1,0 +1,53 @@
+Neural Sequence Dataset Report
+==============================
+date_time: 2026-06-01T10:56:36
+
+Input files:
+- data\raw\gaze_samples.csv
+- data\processed\train_windows.csv
+- data\processed\validation_windows.csv
+- data\processed\test_windows.csv
+output_directory: data/processed/sequences
+target_time_steps: 180
+sampling_rate: 60
+window_size_seconds: 3.0
+
+Sequence feature columns:
+- gaze_x
+- gaze_y
+- pupil_left
+- pupil_right
+- pupil_mean
+- gaze_velocity
+- timestamp_norm
+- blink
+- fixation
+- saccade
+- validity
+
+train_sequence_shape: (8, 180, 11)
+validation_sequence_shape: (8, 180, 11)
+test_sequence_shape: (24, 180, 11)
+
+Label distribution:
+- train: label 0 = 4, label 1 = 4
+- validation: label 0 = 4, label 1 = 4
+- test: label 0 = 12, label 1 = 12
+
+Original sequence lengths:
+- train: average = 101.25, min = 77, max = 157
+- validation: average = 106.25, min = 76, max = 138
+- test: average = 99.50, min = 51, max = 180
+
+Empty windows with no samples:
+- train: 0
+- validation: 0
+- test: 0
+
+Scaler information:
+- type: StandardScaler
+- fitted_on: train split only
+- scaled_features: gaze_x, gaze_y, pupil_left, pupil_right, pupil_mean, gaze_velocity, timestamp_norm
+- n_features_in: 7
+
+Sequence datasets are prepared for future LSTM/GRU/TCN training. No neural model is trained in this step.

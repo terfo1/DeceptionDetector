@@ -1,0 +1,9 @@
+window_id,participant_id,trial_id,session_id,label,instruction,window_start,window_end,valid_ratio,sample_count,is_usable,original_sequence_length,padded_length,sequence_file
+W000025,P002,T025,S004,0,truth,0.0,2.3,0.9496,139,True,138,180,validation_sequences.npz
+W000026,P002,T026,S004,1,lie,0.0,2.0,0.9917,121,True,120,180,validation_sequences.npz
+W000027,P002,T027,S004,0,truth,0.0,1.8,0.945,109,True,108,180,validation_sequences.npz
+W000028,P002,T028,S004,0,truth,0.0,1.9,0.9391,115,True,114,180,validation_sequences.npz
+W000029,P002,T029,S004,0,truth,0.0,1.567,0.9158,95,True,94,180,validation_sequences.npz
+W000030,P002,T030,S004,1,lie,0.0,1.267,0.961,77,True,76,180,validation_sequences.npz
+W000031,P002,T031,S004,1,lie,0.0,1.567,0.9368,95,True,94,180,validation_sequences.npz
+W000032,P002,T032,S004,1,lie,0.0,1.767,0.9346,107,True,106,180,validation_sequences.npz

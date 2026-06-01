@@ -1,0 +1,33 @@
+{
+  "continuous_features": [
+    "gaze_x",
+    "gaze_y",
+    "pupil_left",
+    "pupil_right",
+    "pupil_mean",
+    "gaze_velocity",
+    "timestamp_norm"
+  ],
+  "binary_features": [
+    "blink",
+    "fixation",
+    "saccade",
+    "validity"
+  ],
+  "all_features": [
+    "gaze_x",
+    "gaze_y",
+    "pupil_left",
+    "pupil_right",
+    "pupil_mean",
+    "gaze_velocity",
+    "timestamp_norm",
+    "blink",
+    "fixation",
+    "saccade",
+    "validity"
+  ],
+  "target_time_steps": 180,
+  "sampling_rate": 60,
+  "window_size_seconds": 3.0
+}
