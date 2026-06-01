@@ -1,0 +1,2 @@
+created_at,session_id,model_type,started_at,ended_at,total_predictions,mean_probability,max_probability,mean_latency_ms,max_latency_ms,low_count,medium_count,high_count,insufficient_data_count
+2026-06-01T12:43:41,TEST_WS,random_forest,2026-06-01T12:43:41,2026-06-01T12:43:41,1,0.54,0.54,39.13099999772385,39.13099999772385,0,1,0,0

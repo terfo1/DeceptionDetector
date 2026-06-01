@@ -1,0 +1,5 @@
+created_at,session_id,trial_id,model_type,timestamp,probability,smoothed_probability,risk_category,valid_ratio,sample_count,latency_ms,status
+2026-06-01T12:43:41,TEST_REST,TREST,random_forest,0.0,0.54,0.54,medium,1.0,1,49.39850000664592,ok
+2026-06-01T12:43:41,TEST_WS,TWS,random_forest,0.0,0.54,0.54,medium,1.0,1,39.13099999772385,ok
+2026-06-01T14:15:38,,,random_forest,0.016,0.535,0.535,medium,1.0,2,50.650899996981025,ok
+2026-06-01T14:15:58,,,random_forest,0.016,0.535,0.535,medium,1.0,2,38.08470000512898,ok

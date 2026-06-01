@@ -1,0 +1,18 @@
+Live Inference API Run
+created_at: 2026-06-01T12:43:39
+selected_model: random_forest
+model_available: True
+model_error: none
+note: This service estimates deception risk under a controlled experimental protocol.
+Live Inference API Run
+created_at: 2026-06-01T12:44:02
+selected_model: random_forest
+model_available: True
+model_error: none
+note: This service estimates deception risk under a controlled experimental protocol.
+Live Inference API Run
+created_at: 2026-06-01T14:14:35
+selected_model: random_forest
+model_available: True
+model_error: none
+note: This service estimates deception risk under a controlled experimental protocol.

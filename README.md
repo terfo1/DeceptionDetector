@@ -304,6 +304,25 @@ Model selection outputs are saved to:
 reports/model_selection/
 ```
 
+## Step 15: FastAPI/WebSocket Live Inference Service
+
+A local backend service was added for live deception-risk inference. It loads the selected model from Step 14, exposes REST and WebSocket interfaces, returns probability and risk category, and logs live predictions to `reports/live_inference`.
+
+This is still a prototype service. It is not a production lie detector and does not include a frontend, authentication, database, Docker deployment, or real eye-tracker SDK integration.
+
+Run the API:
+
+```bash
+uvicorn src.api.app:app --reload
+```
+
+Useful checks:
+
+```bash
+curl http://127.0.0.1:8000/health
+curl http://127.0.0.1:8000/status
+```
+
 ## Final Report Generation
 
 Generate the final Word technical/research report:
