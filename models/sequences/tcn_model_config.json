@@ -1,0 +1,18 @@
+{
+  "input_size": 11,
+  "tcn_channels": [
+    32,
+    64,
+    64
+  ],
+  "kernel_size": 3,
+  "dropout": 0.2,
+  "batch_size": 16,
+  "epochs": 30,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "threshold": 0.5,
+  "random_seed": 42,
+  "model_type": "causal_tcn",
+  "note": "The model uses causal convolutions and the split is subject-independent from previous steps."
+}

@@ -1,0 +1,47 @@
+Causal TCN Training Report
+Generated: 2026-06-01T11:23:25
+
+Input sequence files:
+- data\processed\sequences\train_sequences.npz
+- data\processed\sequences\validation_sequences.npz
+- data\processed\sequences\test_sequences.npz
+
+Train sequence shape: (8, 180, 11)
+Validation sequence shape: (8, 180, 11)
+Test sequence shape: (24, 180, 11)
+
+Model architecture:
+- Causal Temporal Convolutional Network
+- residual temporal blocks with dilated causal Conv1d layers
+- mask-aware final valid timestep selection
+TCN channels: [32, 64, 64]
+Kernel size: 3
+Dropout: 0.2
+
+Training hyperparameters:
+- batch_size: 16
+- epochs: 30
+- learning_rate: 0.001
+- weight_decay: 0.0001
+- early_stopping_patience: 5
+- threshold: 0.5
+
+Train label distribution: {0: 4, 1: 4}
+Validation label distribution: {0: 4, 1: 4}
+
+Validation metrics:
+- causal_tcn: loss=0.6989, accuracy=0.5000, balanced_accuracy=0.5000, precision=0.0000, recall=0.0000, f1=0.0000, roc_auc=0.3125, average_precision=0.4512, false_positive_rate=0.0000, false_negative_rate=1.0000
+
+Warnings:
+- None
+
+Scientific note:
+The Causal TCN is designed for future real-time compatibility because it avoids future-sample leakage. It is still not a universal lie detector.
+
+Test Evaluation
+Test sample count: 24
+Test label distribution: {0: 12, 1: 12}
+Test metrics:
+- causal_tcn: loss=0.6935, accuracy=0.4583, balanced_accuracy=0.4583, precision=0.4286, recall=0.2500, f1=0.3158, roc_auc=0.4931, average_precision=0.5253, false_positive_rate=0.3333, false_negative_rate=0.7500
+Warnings:
+- None

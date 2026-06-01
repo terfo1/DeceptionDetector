@@ -1,0 +1,3 @@
+split,model_name,loss,accuracy,balanced_accuracy,precision,recall,f1,roc_auc,average_precision,false_positive_rate,false_negative_rate,number_of_samples,number_of_truth,number_of_lie
+validation,causal_tcn,0.6989485621452332,0.5,0.5,0.0,0.0,0.0,0.3125,0.4511904761904762,0.0,1.0,8,4,4
+test,causal_tcn,0.6935363213221232,0.4583333333333333,0.4583333333333333,0.42857142857142855,0.25,0.3157894736842105,0.4930555555555556,0.5253040532452298,0.3333333333333333,0.75,24,12,12

@@ -1,0 +1,9 @@
+split,model_name,window_id,participant_id,trial_id,true_label,predicted_label,predicted_probability,valid_ratio,original_length
+validation,causal_tcn,W000025,P002,T025,0,0,0.48590198159217834,0.9496,138
+validation,causal_tcn,W000026,P002,T026,1,0,0.4874956011772156,0.9917,120
+validation,causal_tcn,W000027,P002,T027,0,0,0.4634694457054138,0.945,108
+validation,causal_tcn,W000028,P002,T028,0,0,0.4968651533126831,0.9391,114
+validation,causal_tcn,W000029,P002,T029,0,0,0.4877086281776428,0.9158,94
+validation,causal_tcn,W000030,P002,T030,1,0,0.4818985164165497,0.961,76
+validation,causal_tcn,W000031,P002,T031,1,0,0.46630510687828064,0.9368,94
+validation,causal_tcn,W000032,P002,T032,1,0,0.4788128137588501,0.9346,106

@@ -146,6 +146,63 @@ data/processed/sequences/sequence_scaler.joblib
 data/processed/sequences/sequence_dataset_report.txt
 ```
 
+## Step 9: LSTM and GRU Sequence Models
+
+Sequence models are trained on tensors with shape `[N, time_steps, features]`, using the fixed-length datasets created in Step 8. LSTM and GRU classifiers are implemented first; Causal TCN is planned for the next step.
+
+The split remains subject-independent because the models use the existing train/validation/test sequence files. Results are only meaningful when validation and test splits contain participants that are separate from the training participants.
+
+Train sequence models:
+
+```bash
+python -m src.models.train_sequence_models
+```
+
+Evaluate sequence models:
+
+```bash
+python -m src.models.evaluate_sequence_models
+```
+
+Sequence model outputs are saved to:
+
+```text
+models/sequences/
+reports/sequences/
+```
+
+These neural models estimate deception risk under the controlled experimental protocol and are not universal lie detectors.
+
+## Step 10: Causal TCN Sequence Model
+
+The Causal TCN is trained on the same fixed-length sequence dataset as the LSTM and GRU models. It is closer to future real-time deployment because it uses causal temporal convolutions, so each timestep is modeled from current and past samples rather than future samples.
+
+This is still offline model training and evaluation. It does not make the system a universal lie detector, and results are only scientifically meaningful when validation and test splits contain participants separate from the training participants.
+
+Train Causal TCN:
+
+```bash
+python -m src.models.train_tcn_model
+```
+
+Evaluate Causal TCN:
+
+```bash
+python -m src.models.evaluate_tcn_model
+```
+
+Causal TCN outputs are saved to:
+
+```text
+models/sequences/tcn_model.pt
+models/sequences/tcn_training_history.json
+models/sequences/tcn_model_config.json
+reports/sequences/tcn_metrics.csv
+reports/sequences/tcn_report.txt
+reports/sequences/tcn_validation_predictions.csv
+reports/sequences/tcn_test_predictions.csv
+```
+
 ## Final Report Generation
 
 Generate the final Word technical/research report:
