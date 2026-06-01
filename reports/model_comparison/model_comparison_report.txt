@@ -1,0 +1,91 @@
+Model Comparison and Diagnostics Report
+Generated: 2026-06-01T11:39:55
+
+1. Overview
+This report compares baseline models and neural sequence models trained in the controlled eye-tracking deception-risk pipeline.
+It reads existing metrics and predictions only; no models are trained in this step.
+
+2. Dataset Size Summary
+- train windows: 8
+- validation windows: 8
+- test windows: 24
+- total windows: 40
+- train participants: 1
+- validation participants: 1
+- test participants: 1
+- total unique participants: 3
+- subject-independent split: True
+- participant overlap details: none
+- train too small: True
+- test too small: True
+- participant count too small: True
+
+3. Available Models
+- causal_tcn
+- gru
+- logistic_regression
+- lstm
+- random_forest
+
+4. Metrics Summary
+- test / causal_tcn: F1=0.3158, ROC-AUC=0.4931, FPR=0.3333, FNR=0.7500, n=24
+- test / gru: F1=0.6061, ROC-AUC=0.4097, FPR=0.9167, FNR=0.1667, n=24
+- test / logistic_regression: F1=0.5517, ROC-AUC=0.6111, FPR=0.7500, FNR=0.3333, n=24
+- test / lstm: F1=0.0000, ROC-AUC=0.6250, FPR=0.0000, FNR=1.0000, n=24
+- test / random_forest: F1=0.6667, ROC-AUC=0.5694, FPR=0.5000, FNR=0.2500, n=24
+- validation / causal_tcn: F1=0.0000, ROC-AUC=0.3125, FPR=0.0000, FNR=1.0000, n=8
+- validation / gru: F1=0.7273, ROC-AUC=0.6250, FPR=0.7500, FNR=0.0000, n=8
+- validation / logistic_regression: F1=0.2222, ROC-AUC=0.1250, FPR=1.0000, FNR=0.7500, n=8
+- validation / lstm: F1=0.0000, ROC-AUC=0.5625, FPR=0.0000, FNR=1.0000, n=8
+- validation / random_forest: F1=0.6000, ROC-AUC=0.2500, FPR=0.7500, FNR=0.2500, n=8
+
+5. Model Ranking
+Best model by test F1: random_forest (F1=0.6667).
+- 1. random_forest (test F1=0.6667)
+- 2. gru (test F1=0.6061)
+- 3. logistic_regression (test F1=0.5517)
+- 4. causal_tcn (test F1=0.3158)
+- 5. lstm (test F1=0.0000)
+
+6. Prediction Behavior Diagnostics
+- test / causal_tcn: predicted truth=17, predicted lie=7, collapse=False (none)
+- test / gru: predicted truth=3, predicted lie=21, collapse=False (none)
+- test / logistic_regression: predicted truth=7, predicted lie=17, collapse=False (none)
+- test / lstm: predicted truth=24, predicted lie=0, collapse=True (single_class_prediction)
+- test / random_forest: predicted truth=9, predicted lie=15, collapse=False (none)
+- validation / causal_tcn: predicted truth=8, predicted lie=0, collapse=True (single_class_prediction)
+- validation / gru: predicted truth=1, predicted lie=7, collapse=False (none)
+- validation / logistic_regression: predicted truth=3, predicted lie=5, collapse=False (none)
+- validation / lstm: predicted truth=8, predicted lie=0, collapse=True (single_class_prediction)
+- validation / random_forest: predicted truth=2, predicted lie=6, collapse=False (none)
+LSTM shows single-class prediction behavior on the evaluated split. It predicts only the truthful class, resulting in F1 = 0 for the deceptive class.
+
+7. False Positive and False Negative Discussion
+A false positive is a truthful response predicted as deceptive. A false negative is a deceptive response predicted as truthful.
+Both are important, but false positives are especially sensitive ethically because they can wrongly flag truthful behavior as deceptive.
+
+8. Reliability Assessment
+Current results are prototype-level because the train/test window counts or participant count are below reliability thresholds.
+The current results validate the technical pipeline but are not sufficient for strong scientific claims.
+
+9. Recommendations
+- Collect more participants before treating model metrics as scientifically reliable.
+- Keep the subject-independent split so participants do not appear in more than one split.
+- After adding participants, retrain all models from scratch for comparable experiments.
+- Check class balance in every split before interpreting precision, recall, and F1.
+- Inspect prediction probability distributions, not only hard labels.
+- Consider threshold tuning later, after a larger validation set is available.
+- Keep false positive rate as a critical metric because truthful responses flagged as deceptive are ethically sensitive.
+- Do not interpret current results as final reliability; they validate the technical pipeline only.
+- Investigate prediction collapse for: causal_tcn, lstm.
+- The LSTM collapsed to single-class behavior and should not be selected without retraining on more data.
+- random_forest is currently best by available F1, but this should be treated as prototype-level evidence.
+- The Causal TCN may need substantially more data before its temporal convolution capacity is useful.
+- Current dataset size is below reliability thresholds; prioritize data collection over architecture changes.
+
+10. Next Step
+Collect more participants, then rerun preprocessing, splitting, sequence dataset generation, and all training/evaluation scripts.
+After enough data is available, perform threshold calibration and real-time simulation.
+
+Warnings
+- None

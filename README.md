@@ -203,6 +203,60 @@ reports/sequences/tcn_validation_predictions.csv
 reports/sequences/tcn_test_predictions.csv
 ```
 
+## Step 11: Model Comparison and Diagnostics
+
+This step compares Logistic Regression, Random Forest, LSTM, GRU, and Causal TCN results. It does not train models. It reads existing metrics and prediction files, detects prediction collapse, ranks models by F1, and explains whether the current results are reliable or only prototype-level.
+
+Generate the comparison report:
+
+```bash
+python -m src.analysis.generate_model_comparison
+```
+
+Comparison outputs are saved to:
+
+```text
+reports/model_comparison/model_comparison_metrics.csv
+reports/model_comparison/prediction_diagnostics.csv
+reports/model_comparison/model_ranking.csv
+reports/model_comparison/model_comparison_report.txt
+reports/model_comparison/model_comparison_summary.md
+reports/model_comparison/recommendations.md
+```
+
+## Step 12: Real-Time Simulation
+
+Recorded gaze samples can now be replayed as an online stream. The simulation uses a rolling 3-second buffer, generates predictions every 0.5 seconds by default, and outputs a deception-risk probability with a risk category of `low`, `medium`, `high`, or `insufficient_data`.
+
+This step does not use a real eye tracker, and it does not create an API or frontend.
+
+Run default Random Forest simulation:
+
+```bash
+python -m src.realtime.run_realtime_simulation --model-type random_forest
+```
+
+Run GRU simulation:
+
+```bash
+python -m src.realtime.run_realtime_simulation --model-type gru
+```
+
+Run Causal TCN simulation:
+
+```bash
+python -m src.realtime.run_realtime_simulation --model-type causal_tcn
+```
+
+Simulation outputs are saved to:
+
+```text
+reports/realtime_simulation/realtime_predictions.csv
+reports/realtime_simulation/realtime_trial_summary.csv
+reports/realtime_simulation/realtime_simulation_report.txt
+reports/realtime_simulation/realtime_simulation_summary.md
+```
+
 ## Final Report Generation
 
 Generate the final Word technical/research report:

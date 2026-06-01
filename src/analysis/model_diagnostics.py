@@ -46,7 +46,15 @@ PREDICTION_REQUIRED_COLUMNS = [
 ]
 
 
-def load_existing_csv(path: str) -> tuple[pd.DataFrame, list[str]]:
+def load_existing_csv(path: str) -> pd.DataFrame:
+    """Load a CSV if possible, returning an empty dataframe instead of raising."""
+    df, warnings = _load_existing_csv_with_warnings(path)
+    for warning in warnings:
+        print(f"Warning: {warning}")
+    return df
+
+
+def _load_existing_csv_with_warnings(path: str) -> tuple[pd.DataFrame, list[str]]:
     """Load a CSV if possible, returning warnings instead of raising."""
     csv_path = Path(path)
     if not csv_path.exists():
@@ -67,7 +75,7 @@ def load_all_metrics(metric_files: list[str]) -> tuple[pd.DataFrame, list[str]]:
     frames = []
     warnings = []
     for path in metric_files:
-        df, file_warnings = load_existing_csv(path)
+        df, file_warnings = _load_existing_csv_with_warnings(path)
         warnings.extend(file_warnings)
         if df.empty:
             continue
@@ -104,7 +112,7 @@ def load_all_predictions(prediction_files: list[str]) -> tuple[pd.DataFrame, lis
     frames = []
     warnings = []
     for path in prediction_files:
-        df, file_warnings = load_existing_csv(path)
+        df, file_warnings = _load_existing_csv_with_warnings(path)
         warnings.extend(file_warnings)
         if df.empty:
             continue
@@ -212,7 +220,7 @@ def diagnose_dataset_size() -> dict:
     split_frames = {}
     for split in ["train", "validation", "test"]:
         path = Path(PROCESSED_DATA_DIR) / f"{split}_windows.csv"
-        df, file_warnings = load_existing_csv(str(path))
+        df, file_warnings = _load_existing_csv_with_warnings(str(path))
         warnings.extend(file_warnings)
         split_frames[split] = df
 
